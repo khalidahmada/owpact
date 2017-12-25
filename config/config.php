@@ -70,6 +70,10 @@
             require_once $file.'.php';
         }
 
+        public  static function getFunctionFilePath(){
+            return static::getDirectory().'functions.php';
+        }
+
 
 
     }
