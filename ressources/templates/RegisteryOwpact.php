@@ -40,6 +40,7 @@
         }
 
         private function RegisterBases(){
+            $this->RegisterModule('Repo/BaseRepo');
             $this->RegisterModule('Ajax/BaseAjax');
         }
 

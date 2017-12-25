@@ -52,24 +52,43 @@
                         switch($argv[2]){
                             case 'ajax':
                                     if(isset($argv[3]) && isset($argv[4])){
-                                         $this->CeateAjaxController($argv[3],$argv[4]);
+                                         $this->CreateAjaxController($argv[3],$argv[4]);
                                     }else{
                                         echo "Please Enter two params AjaxController Name and the action name";
                                     }
                                 break;
+                            case 'hook':
+
+                                if(isset($argv[3]) && isset($argv[4])){
+
+                                    $this->CreateHookController($argv[3],$argv[4]);
+                                }else{
+                                    echo "Please Enter two params Hook Name and the function callback name";
+                                }
+                            break;
+                            case 'repo':
+                                if(isset($argv[3])){
+                                    $this->CreateRepoController($argv[3]);
+                                }else{
+                                    echo "Please enter Repo Name";
+                                }
                             default:
                                 echo $error_not_valide_make;
                         }
                     }else{
                         echo $error_not_valide_make;
                     }
+                }else{
+                    if($current_cmd == 'publish'){
+                        $this->RegisterModule('pleaseHandler/PublishHandler');
+                    }else{
+                        echo "please Enter valide command";
+                    }
                 }
 
 
 
-                if($current_cmd == 'publish'){
-                    $this->RegisterModule('pleaseHandler/PublishHandler');
-                }
+
 
             }else{
                 echo "Please enter valide command";
@@ -77,12 +96,26 @@
         }
 
 
-        private function CeateAjaxController($file_name, $action_name)
+        private function CreateAjaxController($file_name, $action_name)
         {
             $create = new CreteElement("Ajax/$file_name.php",array("_NAME_" => $file_name,'_ACTION_'=>$action_name),'Ajax',__DIR__.'/ressources/src/Ajax.php','RegisterAjax');
             $create->CreateItem();
             die();
 
+        }
+
+        private function CreateHookController($hook_name,$fnc_name)
+        {
+            $create = new CreteElement("Hooks/$fnc_name.php",array("_HOOK_NAME" => $hook_name,'__CALLBACK_NAME'=>$fnc_name),'Hooks',__DIR__.'/ressources/src/Hook.php','RegisterHooks');
+            $create->CreateItem();
+            die();
+        }
+
+        private function CreateRepoController($RepoName)
+        {
+            $create = new CreteElement("Repo/$RepoName.php",array("__NAME__" => $RepoName),'Repo',__DIR__.'/ressources/src/Repo.php','RegisterRepo');
+            $create->CreateItem();
+            die();
         }
 
     }

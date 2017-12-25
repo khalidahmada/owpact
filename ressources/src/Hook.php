@@ -4,4 +4,4 @@
         // Your Logic Here
     }
 
-    add_action('HOOK_NAME' , __CALLBACK_NAME);
+    add_action('_HOOK_NAME' , __CALLBACK_NAME);
