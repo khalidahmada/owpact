@@ -33,6 +33,7 @@
             // Register Base Class
             $this->RegisterBases();
 
+            $this->RegisterEmails();
 
             $this->RegisterHooks();
             $this->RegisterRepo();
@@ -66,6 +67,10 @@
         }
 
         private function RegisterRepo(){
+
+        }
+
+        private function RegisterEmails(){
 
         }
 

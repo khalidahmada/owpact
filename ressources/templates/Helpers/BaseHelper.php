@@ -1916,7 +1916,7 @@
         $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : false;
 
         if($host){
-            if(strpos($host,'.dev')) return true;
+            if(strpos($host,'.local')) return true;
         }
 
         return false;

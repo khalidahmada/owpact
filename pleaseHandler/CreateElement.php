@@ -11,7 +11,9 @@
        public $template;
        public $RegistrayEntry;
 
-        public function __construct($fileName, array $replaces,$type,$template,$RegistrayEntry)
+        public $extra_files = array();
+
+        public function __construct($fileName, array $replaces,$type,$template,$RegistrayEntry,$extra_files = array())
         {
             $this->replaces=$replaces;
             $this->fileName=$fileName;
@@ -19,6 +21,7 @@
             $this->type = $type;
             $this->template=$template;
             $this->RegistrayEntry=$RegistrayEntry;
+            $this->extra_files = $extra_files;
 
         }
 
@@ -51,6 +54,8 @@
 
                     $updated = $this->UpdateRegistery();
 
+                    // Create Extra Files
+                    $this->CreateExtraFiles();
                     if($updated && $saved){
                         echo "$this->type $this->fileName has been created !";
                         die();
@@ -76,6 +81,16 @@
             }
 
             return false;
+        }
+
+        private function CreateExtraFiles()
+        {
+            if($this->extra_files){
+                foreach($this->extra_files as $dir_ => $template_name){
+                    $file = \OWPactConfig::getOWPDir().$dir_.$template_name.'.php';
+                    file_put_contents($file,'');
+                }
+            }
         }
 
 

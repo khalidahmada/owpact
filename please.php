@@ -82,6 +82,12 @@
                                 }else{
                                     echo "Please enter Helper Name";
                                 }
+                            case 'email':
+                                if(isset($argv[3]) && isset($argv[4])){
+                                    $this->CreateEmailController($argv[3],$argv[4]);
+                                }else{
+                                    echo "Please enter email name and email template name";
+                                }
                             default:
                                 echo $error_not_valide_make;
                         }
@@ -143,6 +149,18 @@
             );
 
             $create = new CreteElement("Helpers/$file_name.php",$replaces,'Helpers',__DIR__.'/ressources/src/Helper.php','RegisterHelpers');
+            $create->CreateItem();
+            die();
+        }
+
+        private function CreateEmailController($email_name, $templateName)
+        {
+            $replaces = array(
+                '__NAME__' => $email_name,
+                '__TEMPLATE_NAME_' => $templateName,
+            );
+
+            $create = new CreteElement("Emails/$email_name.php",$replaces,'Emails',__DIR__.'/ressources/src/Email.php','RegisterEmails' , array('/Emails/templates/'=>$templateName));
             $create->CreateItem();
             die();
         }
