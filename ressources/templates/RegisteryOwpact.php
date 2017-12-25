@@ -2,6 +2,14 @@
     /* Registery Owpact
     */
 
+    // Config Object
+    class WPTCONF {
+        public static $conf=false;
+
+        public static function get(){
+            return static::$conf;
+        }
+    }
 
     class RegisteryOwpact  {
 
@@ -17,6 +25,8 @@
 
         private function boot()
         {
+            // Load Configs
+            $this->LoadConfigs();
             // Helpers
             $this->RegisterHelpers();
 
@@ -40,7 +50,10 @@
         }
 
         private function RegisterBases(){
+            $this->RegisterModule('Helpers/BaseHelper');
+            $this->RegisterModule('Emails/BaseEmail');
             $this->RegisterModule('Repo/BaseRepo');
+            $this->RegisterModule('Repo/TraitRepo');
             $this->RegisterModule('Ajax/BaseAjax');
         }
 
@@ -57,7 +70,20 @@
         }
 
         private function RegisterModule($module){
-            require_once($module.'.php');
+            $file_name = $module;
+            if(!strpos($module,'.php')){
+                $file_name .=  ".php";
+            }
+            require_once($file_name);
+        }
+
+
+        private function LoadConfigs()
+        {
+            $configs = file_get_contents(__DIR__.'/config/config.json');
+            if($configs){
+                WPTCONF::$conf = json_decode($configs);
+            }
         }
 
 

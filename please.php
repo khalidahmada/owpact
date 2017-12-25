@@ -68,9 +68,19 @@
                             break;
                             case 'repo':
                                 if(isset($argv[3])){
-                                    $this->CreateRepoController($argv[3]);
+                                    $post_type = false;
+                                    if(isset($argv[4])){
+                                        $post_type = $argv[4];
+                                    }
+                                    $this->CreateRepoController($argv[3],$post_type);
                                 }else{
                                     echo "Please enter Repo Name";
+                                }
+                            case 'helper':
+                                if(isset($argv[3])){
+                                    $this->CreateHelperController($argv[3]);
+                                }else{
+                                    echo "Please enter Helper Name";
                                 }
                             default:
                                 echo $error_not_valide_make;
@@ -111,9 +121,28 @@
             die();
         }
 
-        private function CreateRepoController($RepoName)
+        private function CreateRepoController($RepoName,$post_type)
         {
-            $create = new CreteElement("Repo/$RepoName.php",array("__NAME__" => $RepoName),'Repo',__DIR__.'/ressources/src/Repo.php','RegisterRepo');
+            $replaces = array("__NAME__" => $RepoName);
+
+            if($post_type){
+                $replaces['_POST_TYPE'] = $post_type;
+            }
+
+
+
+            $create = new CreteElement("Repo/$RepoName.php",$replaces,'Repo',__DIR__.'/ressources/src/Repo.php','RegisterRepo');
+            $create->CreateItem();
+            die();
+        }
+
+        private function CreateHelperController($file_name)
+        {
+            $replaces = array(
+                '__NAME__' => $file_name
+            );
+
+            $create = new CreteElement("Helpers/$file_name.php",$replaces,'Helpers',__DIR__.'/ressources/src/Helper.php','RegisterHelpers');
             $create->CreateItem();
             die();
         }

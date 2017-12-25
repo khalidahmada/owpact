@@ -1,0 +1,10 @@
+{
+  "email" :{
+    "smtp" : {
+      "provider":"mailtrap.io",
+      "port" :25,
+      "username" :"",
+      "password" :""
+    }
+  }
+}
