@@ -16,6 +16,7 @@
 
         public function RegisterBase()
         {
+            require_once('core/helpers.php');
             require_once("config/config.php");
         }
 

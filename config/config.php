@@ -46,7 +46,7 @@
 
         public static function getDirectory()
         {
-            return static::$project_config->path_global_theme;
+            return __DIR__.'/'.static::$project_config->path_global_theme;
         }
 
         public static function getDir()
@@ -69,6 +69,9 @@
         {
             require_once $file.'.php';
         }
+
+
+
     }
 
     new OWPactConfig();

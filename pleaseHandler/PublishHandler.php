@@ -12,11 +12,18 @@
 
         public function boot()
         {
-            if(!$this->checkDir()){
-                $this->PublishFolder();
-            }
+            $this->Publish();
         }
 
+
+        public function Publish()
+        {
+            if(!$this->checkDir()){
+                $this->PublishFolder();
+            }else{
+                echo "Publish is Already Done go to ".OWPactConfig::getOWPDir();
+            }
+        }
         public static function  checkDir()
         {
            return  is_dir( OWPactConfig::getOWPDir());
@@ -27,7 +34,7 @@
          */
         private function PublishFolder()
         {
-            copy("../ressources/templates" , OWPactConfig::getOWPDir());
+            copy_dir(__DIR__."/../ressources/templates" , OWPactConfig::getOWPDir());
             echo "Donee";
         }
     }
