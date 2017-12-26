@@ -112,5 +112,13 @@
 
         }
 
+        public static function CreateDirectory($dir_name)
+        {
+            $dir_name = \OWPactConfig::getOWPDir().'/'.$dir_name;
+            if(!is_dir($dir_name)){
+                mkdir($dir_name,0777,true);
+            }
+        }
+
 
     }

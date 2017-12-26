@@ -8,6 +8,7 @@
     use pleaseHandler\HookHandler;
     use pleaseHandler\RepoHandler;
     use pleaseHandler\RouteHandler;
+    use pleaseHandler\TraitHandler;
 
     class OWPactPlease{
 
@@ -48,6 +49,7 @@
             $this->RegisterModule('pleaseHandler/HelperHandler');
             $this->RegisterModule('pleaseHandler/ExtraHandler');
             $this->RegisterModule('pleaseHandler/RouteHandler');
+            $this->RegisterModule('pleaseHandler/TraitHandler');
         }
 
         private function RegisterModule($module)
@@ -104,6 +106,7 @@
             new HookHandler($argv);
             new ExtraHandler($argv);
             new RouteHandler($argv);
+            new TraitHandler($argv);
         }
 
 

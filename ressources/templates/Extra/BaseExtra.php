@@ -15,6 +15,7 @@
 
 
         private function RegisterModules(){
+            $this->RegisterModule('PostsTypes');
             $this->RegisterModule('images_sizes');
         }
 

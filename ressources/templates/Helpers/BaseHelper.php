@@ -1928,6 +1928,35 @@
     }
 
 
+    /*
+     * get_field
+     */
+    function f($name,$id = false){
+
+        if(!$id){
+            $id = get_the_id();
+        }
+        return get_field($name,$id );
+
+    }
+
+    function ops($field_id, $echo=false,$key="option"){
+        if( $echo ){
+            the_field($field_id,$key);
+        }else{
+            return get_field($field_id,$key);
+        }
+    }
+
+
+    function eops($field_id, $echo=true,$key="option"){
+        if( $echo ){
+            the_field($field_id,$key);
+        }else{
+            return get_field($field_id,$key);
+        }
+    }
+
 
 
 

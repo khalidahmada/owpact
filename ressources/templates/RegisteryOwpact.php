@@ -29,6 +29,7 @@
             $this->LoadConfigs();
             // Helpers
             $this->RegisterHelpers();
+            $this->RegisterTraits();
 
             // Register Base Class
             $this->RegisterBases();
@@ -83,6 +84,10 @@
         }
 
         private function RegisterRoute(){
+
+        }
+
+        private function RegisterTraits(){
 
         }
 
