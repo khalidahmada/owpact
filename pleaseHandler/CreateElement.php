@@ -94,4 +94,23 @@
         }
 
 
+        public static function AddCallToFunctionIntoFile($filename , $AppendString , $functionName ){
+
+            $file_target = \OWPactConfig::getOWPDir().$filename;
+
+            $content = file_get_contents($file_target );
+
+            if($content){
+                if(!strpos($content , $AppendString)){
+                    // Replate With Call Module
+                    $str_entry = 'function '.$functionName.'(){';
+                    $newSaved = $str_entry."\n \t \t \t".$AppendString;
+                    $content = str_replace($str_entry ,$newSaved,$content );
+                    return file_put_contents($file_target,$content);
+                }
+            }
+
+        }
+
+
     }

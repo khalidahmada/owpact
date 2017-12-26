@@ -12,7 +12,7 @@
 
         public function boot()
         {
-            $this->Publish();
+
         }
 
 
@@ -62,5 +62,3 @@
             return $code;
         }
     }
-
-    new PublishHandler();

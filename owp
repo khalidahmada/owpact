@@ -1,0 +1,112 @@
+#!/usr/bin/php
+<?php
+    use pleaseHandler\AjaxHandler;
+    use pleaseHandler\CreteElement;
+    use pleaseHandler\EmailHandler;
+    use pleaseHandler\ExtraHandler;
+    use pleaseHandler\HelperHandler;
+    use pleaseHandler\HookHandler;
+    use pleaseHandler\RepoHandler;
+    use pleaseHandler\RouteHandler;
+
+    class OWPactPlease{
+
+        /**
+         * OWPactPlease constructor.
+         */
+        public function __construct()
+        {
+            $this->boot();
+        }
+
+        private function boot()
+        {
+
+            $this->RegisterModules();
+            $this->RegisterHandler();
+
+            $this->HandlerCLI();
+
+        }
+
+        private function RegisterModules()
+        {
+            $this->RegisterModule('base');
+            $this->RegisterModule('pleaseHandler/CreateElement');
+        }
+
+        private function RegisterHandler()
+        {
+            $this->RegisterModule('pleaseHandler/PublishHandler');
+
+            $this->RegisterModule('pleaseHandler/HandlerPlease');
+
+            $this->RegisterModule('pleaseHandler/AjaxHandler');
+            $this->RegisterModule('pleaseHandler/EmailHandler');
+            $this->RegisterModule('pleaseHandler/HookHandler');
+            $this->RegisterModule('pleaseHandler/RepoHandler');
+            $this->RegisterModule('pleaseHandler/HelperHandler');
+            $this->RegisterModule('pleaseHandler/ExtraHandler');
+            $this->RegisterModule('pleaseHandler/RouteHandler');
+        }
+
+        private function RegisterModule($module)
+        {
+            require_once $module.'.php';
+        }
+
+        private function HandlerCLI()
+        {
+
+            global $argv;
+
+            if($argv){
+                $current_cmd = $argv[1];
+
+                if($current_cmd == 'make'){
+
+                    $error_not_valide_make = "Please enter valid entry example : (ajax , hook , helper repo ,email, module )";
+
+                    if(isset($argv[2])){
+                                $this->ProcessHandler($argv);
+                                echo $error_not_valide_make;
+                    }else{
+                        echo $error_not_valide_make;
+                    }
+                }else{
+
+                    // Check if is Publish Case
+                    if($current_cmd == 'publish'){
+
+                        $publish = new PublishHandler();
+                        $publish->Publish();
+
+                    }else{
+                        echo "please Enter valid command";
+                    }
+                }
+
+            }else{
+                echo "Please enter valid command";
+            }
+        }
+
+
+        /*
+         * Process Handlers
+         */
+        private function ProcessHandler($argv)
+        {
+            new AjaxHandler($argv);
+            new RepoHandler($argv);
+            new EmailHandler($argv);
+            new HelperHandler($argv);
+            new HookHandler($argv);
+            new ExtraHandler($argv);
+            new RouteHandler($argv);
+        }
+
+
+    }
+
+    new OWPactPlease();

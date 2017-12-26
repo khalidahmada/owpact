@@ -32,11 +32,13 @@
 
             // Register Base Class
             $this->RegisterBases();
+            $this->RegisterRoute();
 
             $this->RegisterEmails();
 
             $this->RegisterHooks();
             $this->RegisterRepo();
+            $this->RegisterExtra();
             $this->RegisterModules();
             $this->RegisterAjax();
         }
@@ -52,6 +54,8 @@
 
         private function RegisterBases(){
             $this->RegisterModule('Helpers/BaseHelper');
+            $this->RegisterModule('libs/BaseLibs');
+            $this->RegisterModule('Extra/BaseExtra');
             $this->RegisterModule('Emails/BaseEmail');
             $this->RegisterModule('Repo/BaseRepo');
             $this->RegisterModule('Repo/TraitRepo');
@@ -71,6 +75,14 @@
         }
 
         private function RegisterEmails(){
+
+        }
+
+        private function RegisterExtra(){
+
+        }
+
+        private function RegisterRoute(){
 
         }
 
