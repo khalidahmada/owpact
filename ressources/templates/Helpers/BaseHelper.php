@@ -1958,6 +1958,15 @@
     }
 
 
+    function HasTemplate($post_id,$template_name){
+        $template = get_post_meta($post_id,'_wp_page_template');
+
+        if(!$template) return false;
+
+        return $template[0] == $template_name;
+    }
+
+
 
 
 
