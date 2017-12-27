@@ -22,9 +22,17 @@
             }
         }
 
-        private function Execute($file_name, $action_name)
+        private function Execute($file_name, $templateName)
         {
-            $create = new CreteElement("Ajax/$file_name.php",array("_NAME_" => $file_name,'_ACTION_'=>$action_name),'Ajax',__DIR__.'/../ressources/src/Ajax.php','RegisterAjax');
+
+            $create = new CreteElement("Emails/$file_name.php",
+                                        array("__NAME__" => $file_name,
+                                              '__TEMPLATE_NAME_'=>$templateName
+                                        ),'Emails',__DIR__.'/../ressources/src/Email.php','RegisterEmails',
+                                        array(
+                                            '/Emails/templates/'=>$templateName
+                                        )
+                );
             $create->CreateItem();
             die();
 
