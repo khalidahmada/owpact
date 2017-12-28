@@ -33,6 +33,7 @@
 
             // Register Base Class
             $this->RegisterBases();
+            $this->RegisterTableViews();
             $this->RegisterRoute();
 
             $this->RegisterEmails();
@@ -84,6 +85,10 @@
         }
 
         private function RegisterRoute(){
+
+        }
+
+        private function RegisterTableViews(){
 
         }
 

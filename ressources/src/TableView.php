@@ -6,16 +6,19 @@
     class _NAME_TableListView extends WP_List_Table
     {
 
-        //field_name => 'Label'
-
-        // PUT FIELDS HERE
+        /*
+         * INPUT COLUMNS HERE //////////////////////////
+         */
         private $fields = array(
             'id' => "ID",
-            'name' => 'Nom',
-            'email' => 'E-mail',
-            'text' => "Text",
+            //your colum here
+            //'column_name' => 'LABEL',
+            // End label
             'date' => "La date"
         );
+        /*
+         * INPUT COLUMNS HERE //////////////////////////
+         */
 
         private $key;
 
@@ -69,7 +72,9 @@
             $columns = array(
                 'cb'    => '<input type="checkbox" />',
             );
-            array_merge($columns,$this->fields);
+            $columns = array_merge($columns,$this->fields);
+
+
             return $columns;
         }
 
@@ -198,7 +203,7 @@
                     //Set page header
                     header("Content-Encoding: UTF-8");
                     header("Content-Type: application/csv-tab-delimited-table; charset=UTF8");
-                    header("Content-Disposition: attachment; filename=export-'.$this->key.'-" . $date . ".csv");
+                    header("Content-Disposition: attachment; filename=export-".$this->key."-" . $date . ".csv");
                     header("Content-Transfer-Encoding: binary");
                     header("Cache-Control: max-age=0");
                     header("Pragma: public");
@@ -252,7 +257,7 @@
         {
             global $wpdb;
             $table = '';
-            $table = $wpdb->prefix . 'd';
+            $table = $wpdb->prefix . '_NAME_';
 
             if ($wpdb->get_var("SHOW TABLES LIKE '$table'") == $table) {
                 return $table;
@@ -325,14 +330,17 @@
     }
 
 
-    class __NameView_TableListViewConfig{
+    class _NAME_TableListViewConfig{
 
         /**
          * __NameView_TaleViewConfig constructor.
          */
+        // Page title and Menu
+        private $ListViewName = '_TITLE_';
 
-        private $ListViewName = '_VIEW_NAME';
+        ////////// YOUR ICON NAME  HERE/////
         private $icon = 'dashicons-list-view';
+        //////////////////////////////////////
 
         public function __construct()
         {
@@ -378,7 +386,7 @@
         }
     }
 
-    new __NameView_TableListViewConfig();
+    new _NAME_TableListViewConfig();
 
 
 

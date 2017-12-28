@@ -8,6 +8,7 @@
     use pleaseHandler\HookHandler;
     use pleaseHandler\RepoHandler;
     use pleaseHandler\RouteHandler;
+    use pleaseHandler\TableViewHandler;
     use pleaseHandler\TraitHandler;
 
     class OWPactPlease{
@@ -50,6 +51,7 @@
             $this->RegisterModule('pleaseHandler/ExtraHandler');
             $this->RegisterModule('pleaseHandler/RouteHandler');
             $this->RegisterModule('pleaseHandler/TraitHandler');
+            $this->RegisterModule('pleaseHandler/TableViewHandler');
         }
 
         private function RegisterModule($module)
@@ -69,6 +71,7 @@
 
                     $error_not_valide_make = "Please enter valid entry example : (ajax , hook , helper repo ,email, module )";
 
+                    $this->CheckIfAlreadyPublished();
                     if(isset($argv[2])){
                                 $this->ProcessHandler($argv);
                                 echo $error_not_valide_make;
@@ -107,6 +110,18 @@
             new ExtraHandler($argv);
             new RouteHandler($argv);
             new TraitHandler($argv);
+            new TableViewHandler($argv);
+        }
+
+        private function CheckIfAlreadyPublished()
+        {
+            $Registray_file = OWPactConfig::getOWPDir().'/RegisteryOwpact.php';
+
+            if(!file_exists($Registray_file)){
+                echo "Can't find the RegisteryOwpact.php in your project.".
+                    "Do you published ? else please publish first 'php owp publish'";
+                die();
+            }
         }
 
 
