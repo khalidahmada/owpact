@@ -16,7 +16,7 @@
         public function to($to)
         {
 
-            $content = file_get_contents(__DIR_.'/templates/__TEMPLATE_NAME_.php');
+            $content = file_get_contents(__DIR__.'/templates/__TEMPLATE_NAME_.php');
             $this->Parse($content);
 
             $subject = $this->data['subject'];
