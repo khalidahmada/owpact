@@ -79,6 +79,8 @@
                 $newSaved = $str_entry."\n \t \t \t".'$this->RegisterModule("'.$this->fileName.'");';
                 $content = str_replace($str_entry ,$newSaved,$content );
 
+
+
                 return file_put_contents($Registray_file,$content);
             }
 

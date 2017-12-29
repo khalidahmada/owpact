@@ -1971,7 +1971,10 @@
     }
 
 
-
+    function sprintf_array($format, $arr)
+    {
+        return call_user_func_array('sprintf', array_merge((array)$format, $arr));
+    }
 
 
 
