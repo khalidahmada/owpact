@@ -6,6 +6,7 @@
     use pleaseHandler\ExtraHandler;
     use pleaseHandler\HelperHandler;
     use pleaseHandler\HookHandler;
+    use pleaseHandler\ModuleHandler;
     use pleaseHandler\RepoHandler;
     use pleaseHandler\RouteHandler;
     use pleaseHandler\TableViewHandler;
@@ -52,6 +53,7 @@
             $this->RegisterModule('pleaseHandler/RouteHandler');
             $this->RegisterModule('pleaseHandler/TraitHandler');
             $this->RegisterModule('pleaseHandler/TableViewHandler');
+            $this->RegisterModule('pleaseHandler/ModuleHandler');
         }
 
         private function RegisterModule($module)
@@ -111,6 +113,7 @@
             new RouteHandler($argv);
             new TraitHandler($argv);
             new TableViewHandler($argv);
+            new ModuleHandler($argv);
         }
 
         private function CheckIfAlreadyPublished()

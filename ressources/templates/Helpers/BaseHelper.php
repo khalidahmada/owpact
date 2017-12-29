@@ -1966,6 +1966,10 @@
         return $template[0] == $template_name;
     }
 
+    function pp($var, $die=false){
+        pre_p($var,$die);
+    }
+
 
 
 

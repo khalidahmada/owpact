@@ -72,8 +72,10 @@
             $content = file_get_contents($Registray_file );
 
             if($content){
+
                 // Replate With Call Module
                 $str_entry = 'function '.$this->RegistrayEntry.'(){';
+
                 $newSaved = $str_entry."\n \t \t \t".'$this->RegisterModule("'.$this->fileName.'");';
                 $content = str_replace($str_entry ,$newSaved,$content );
 
