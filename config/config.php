@@ -54,6 +54,11 @@
             return static::getDirectory().static::$project_config->dir_inc;
         }
 
+        public static function getGlobalPath()
+        {
+            return static::$project_config->path_global_theme;
+        }
+
         /*
          * get Dir the OWP
          */

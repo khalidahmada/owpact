@@ -124,5 +124,14 @@
             }
         }
 
+        public static function CreateDirectoryIntoGlobalPath($dir_name)
+        {
+            $dir_name = __DIR__.'/'.\OWPactConfig::getGlobalPath().$dir_name;
+
+            if(!is_dir($dir_name)){
+                mkdir($dir_name,0777,true);
+            }
+        }
+
 
     }

@@ -18,7 +18,7 @@
 
             if(isset($this->argv[3])){
                 $this->PrepareForSetUpModules($this->argv[3]);
-                $this->Execute($this->argv[3],$this->argv[4]);
+                $this->Execute($this->argv[3]);
             }else{
                 echo "Please enter your module name";
             }

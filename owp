@@ -4,6 +4,8 @@
     use pleaseHandler\CreteElement;
     use pleaseHandler\EmailHandler;
     use pleaseHandler\ExtraHandler;
+    use pleaseHandler\FunctionHandler;
+    use pleaseHandler\FunctionsHandler;
     use pleaseHandler\HelperHandler;
     use pleaseHandler\HookHandler;
     use pleaseHandler\ModuleHandler;
@@ -54,6 +56,7 @@
             $this->RegisterModule('pleaseHandler/TraitHandler');
             $this->RegisterModule('pleaseHandler/TableViewHandler');
             $this->RegisterModule('pleaseHandler/ModuleHandler');
+            $this->RegisterModule('pleaseHandler/FunctionsHandler');
         }
 
         private function RegisterModule($module)
@@ -114,6 +117,7 @@
             new TraitHandler($argv);
             new TableViewHandler($argv);
             new ModuleHandler($argv);
+            new FunctionsHandler($argv);
         }
 
         private function CheckIfAlreadyPublished()

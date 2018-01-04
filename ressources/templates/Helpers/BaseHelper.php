@@ -259,65 +259,11 @@
         }
     }
 
+    /*
+     * Get the Route Admin and send Action
+     */
     function getAjaxRoute($route){
         return admin_url( '/admin-ajax.php' )."?action=".$route;
-    }
-
-
-    function simple_breadcrumb() {
-        global $post;
-        $separator = ""; // Simply change the separator to what ever you need e.g. / or >
-
-        echo '';
-        if (!is_home()) {
-
-            echo '<li><a href="'.get_bloginfo('url').'">'.___("Acceuil").'</a></li>';
-
-            if ( is_category() || is_single() ) {
-                the_category(', ');
-                if ( is_single() ) {
-                    echo $separator;
-                    echo "<li><span>".get_the_title()."</span></li>";
-                }
-            } elseif ( is_page() && $post->post_parent ) {
-                $home = get_page(get_option('page_on_front'));
-                for ($i = count($post->ancestors)-1; $i >= 0; $i--) {
-                    if (($home->ID) != ($post->ancestors[$i])) {
-                        echo '<li><a href="';
-                        echo get_permalink($post->ancestors[$i]);
-                        echo '">';
-                        echo get_the_title($post->ancestors[$i]);
-                        echo "</a></li>".$separator;
-                    }
-                }
-                echo the_title();
-            } elseif (is_page()) {
-                echo the_title();
-            } elseif (is_404()) {
-                echo "404";
-            }
-        } else {
-            "<li>".get_bloginfo('name')."</li>";
-        }
-        echo '';
-    }
-
-
-    function getMounths(){
-        return   array(
-            "Janvier",
-            "FÃ©vrier",
-            "Mars",
-            "Avril",
-            "Mai",
-            "Juin",
-            "Juillet",
-            "AoÃ»t",
-            "Septembre",
-            "Octobre",
-            "Novembre",
-            "DÃ©cembre"
-        );
     }
 
 
@@ -345,37 +291,6 @@
     }
 
 
-    function wpse57444_get_terms($taxonomies, $args=array() ){
-        //Parse $args in case its a query string.
-        $args = wp_parse_args($args);
-
-        if( !empty($args['post_types']) ){
-            $args['post_types'] = (array) $args['post_types'];
-            add_filter( 'terms_clauses','wpse_filter_terms_by_cpt',10,3);
-
-            function wpse_filter_terms_by_cpt( $pieces, $tax, $args){
-                global $wpdb;
-
-                //Don't use db count
-                $pieces['fields'] .=", COUNT(*) " ;
-
-                //Join extra tables to restrict by post type.
-                $pieces['join'] .=" INNER JOIN $wpdb->term_relationships AS r ON r.term_taxonomy_id = tt.term_taxonomy_id
-                                INNER JOIN $wpdb->posts AS p ON p.ID = r.object_id ";
-
-                //Restrict by post type and Group by term_id for COUNTing.
-                $post_types_str = implode(',',$args['post_types']);
-                $pieces['where'].= $wpdb->prepare(" AND p.post_type IN(%s) GROUP BY t.term_id", $post_types_str);
-
-                remove_filter( current_filter(), __FUNCTION__ );
-                return $pieces;
-            }
-        }//endif post_types set
-
-        return get_terms($taxonomies, $args);
-    }
-
-
     function slugify($text)
     {
         // replace non letter or digits by -
@@ -399,40 +314,6 @@
         }
 
         return $text;
-    }
-
-
-
-    function getBreadcrumbsById($id){
-        $arra = array();
-        $currentId = $id;
-        $arra[] = '<li><a href="/">'.__('accueil','owpact').'</a></li>';
-
-        $currentId = $currentId;
-
-        while(wp_get_post_parent_id($currentId)):
-            $cibleId = wp_get_post_parent_id($currentId);
-            $arra[] = '<li><a href="'.get_the_permalink($cibleId).'">'.get_the_title($cibleId).'</a></li>';
-            $currentId = wp_get_post_parent_id($currentId);
-        endwhile;
-
-        // Post Type
-        $typepost = get_post_type( $id );
-        $url = "";
-        $title = "";
-
-        if($title!="" && $url != ""):
-            $arra[] = '<li><a href="'.$url.'">'.__($title,'owpact').'</a></li>';
-        endif;
-
-        $arra[] = '<li>'.get_the_title($id).'</li>';
-
-        ?>
-        <?php
-        array_reverse($arra);
-
-        echo join("" , $arra );
-
     }
 
 
@@ -528,7 +409,6 @@
     }
 
 
-
     /*
      * Filters
      */
@@ -563,57 +443,15 @@
     }
 
 
-    /*
-     * Helpers WPML
-     */
-
-    function get_field_wpml( $field_key, $post_id = false, $format_value = true ) {
-
-        // see : http://support.advancedcustomfields.com/forums/topic/wpml-and-acf-options/
-
-        global $sitepress;
-
-        $is_cascade   = $post_id == 'option' && $format_value == true ? true : false;
-        $format_value = $post_id == 'option' ? true : $format_value; // force $format_value = true for option
-
-        // get field for default language
-        if ( ( $sitepress->get_default_language() == ICL_LANGUAGE_CODE ) && ( $ret = get_field( $field_key, $post_id, $format_value ) ) ) {
-            return $ret;
-        }
-
-        // get field for current language
-        elseif ( $ret = get_field( $field_key . '_' . ICL_LANGUAGE_CODE, $post_id, $format_value ) ) {
-            return $ret;
-        }
-
-        // get field when if not exists for locale by cascade
-        elseif ( $is_cascade ) {
-            return get_field( $field_key, $post_id, $format_value );
-        }
-
-        return false;
-    }
-
-    function have_rows_wpml( $field_key, $post_id = false ) {
-
-        global $sitepress;
-
-        if ( $sitepress->get_default_language() == ICL_LANGUAGE_CODE ) {
-            return have_rows( $field_key, $post_id );
-        }
-
-        return have_rows( $field_key . '_' . ICL_LANGUAGE_CODE, $post_id );
-    }
-
     function s_field($field , $fd = 'option'){
 
         $prifex = ICL_LANGUAGE_CODE;
         $prifex.= '_';
 
         if(ICL_LANGUAGE_CODE != 'fr'):
-            return get_field($prifex.$field , $fd);
+            return f($prifex.$field , $fd);
         else:
-            return get_field($field , $fd);
+            return f($field , $fd);
         endif;
     }
 
@@ -656,7 +494,6 @@
     }
 
 
-
     function get_params($url,$param){
         $query = parse_url($url, PHP_URL_QUERY);
         parse_str($query, $params);
@@ -674,29 +511,15 @@
         return $video;
     }
 
-    function get_month_name($ldate,$currentlng = "fr"){
-        $ldate = date_create((string)$ldate);
-        $frdate = date_format($ldate, "m");
-        $endate = date_format($ldate, "M");
-        $tabMois   = array("", "janvier", "fevrier", "mars", "avril", "mai", "juin", "juillet", "aout", "septembre", "octobre", "novembre", "decembre");
-        $frdateMonth = $tabMois[intval($frdate)];
-        return ( $currentlng ==  "fr" ? $frdateMonth : $endate );
-    }
 
     function get_day_ofdate($ldate){
         $ldate = date_create((string)$ldate);
         return date_format($ldate, "d");
     }
 
+
     function clng(){
         return apply_filters( 'wpml_current_language', NULL );
-    }
-
-    /*
-     * Replace en and ru to uk
-     */
-    function clng_val(){
-        return str_replace(array('en','ru'),'uk' , clng());
     }
 
 

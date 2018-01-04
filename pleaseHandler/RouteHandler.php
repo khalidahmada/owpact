@@ -37,6 +37,7 @@
 
         private function RegisterRouteLibrary()
         {
+            CreteElement::CreateDirectory('Route');
             CreteElement::AddCallToFunctionIntoFile('/libs/BaseLibs.php','$this->RegisterRouterCore();','RegisterModules');
         }
     }

@@ -72,6 +72,10 @@
 
         }
 
+        private function RegisterFunctions(){
+
+        }
+
         private function RegisterRepo(){
 
         }

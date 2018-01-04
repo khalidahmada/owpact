@@ -1,4 +1,6 @@
 <?php
+    use pleaseHandler\CreteElement;
+
     class PublishHandler
     {
 
@@ -34,6 +36,12 @@
          */
         private function PublishFolder()
         {
+            // Create Inc Folder
+            $inc_folder = OWPactConfig::$project_config->dir_inc;
+            $inc_folder = substr($inc_folder, 0, -1);
+
+            CreteElement::CreateDirectoryIntoGlobalPath($inc_folder);
+
             copy_dir(__DIR__."/../ressources/templates" , OWPactConfig::getOWPDir());
 
             // Append file to function file
@@ -56,7 +64,7 @@
         private function GetAppendCoreToFunction()
         {
             $code = "\n".'/* * Call the Owpact core */ '.
-                    "\n".'require get_template_directory() ."/'.
+                    "\n".'require get_stylesheet_directory() ."/'.
                     OWPactConfig::$project_config->dir_owp.'/RegisteryOwpact.php";'."\n".'/* End call Owpact */';
 
             return $code;
