@@ -27,4 +27,17 @@
             die();
 
         }
+
+
+        /*
+         * get The Documentation
+         */
+        public static function  getDoc()
+        {
+            return array(
+                'trigger' => 'extra',
+                'demo' => "php owp make extra ExtraName ",
+                'doc' => "Some time your want crete extra class for specific logic into WordPres",
+            );
+        }
     }

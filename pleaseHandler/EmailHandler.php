@@ -37,4 +37,17 @@
             die();
 
         }
+
+        /*
+         * get The Documentation
+         */
+        public static function  getDoc()
+        {
+            return array(
+                'trigger' => 'email',
+                'demo' => "php owp make mail YourEmailControllerName templateEmailName ",
+                'doc' => "Create email controller to specific logic with template html of email",
+            );
+        }
+
     }

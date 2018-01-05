@@ -3,7 +3,14 @@
 
     abstract class HandlerPlease{
 
+        //use \HandlerTrait;
+
         public $trigger;
+        public static $doc;
+        public static $params;
+
+        public static $_trigger;
+
         public $argv;
         public $match = false;
 
@@ -18,6 +25,7 @@
             $this->argv=$argv;
 
             if($this->argv[2] == $this->trigger) $this->match = true;
+
 
         }
 

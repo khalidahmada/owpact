@@ -67,5 +67,19 @@
 
         }
 
+        /*
+         * get The Documentation
+         */
+        public static function  getDoc()
+        {
+            return array(
+                'trigger' => 'function',
+                'demo' => "php owp make function FunctionsFileName ",
+                'doc' => "Create your separates file functions if you need separate functions into files
+                           Note that your can create files into specific path exemple tuto/fufo/functionfilename
+                           will create file into folder Functions with given path",
+            );
+        }
+
 
     }

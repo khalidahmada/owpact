@@ -1,4 +1,5 @@
 <?php
+    namespace pleaseHandler;
     use pleaseHandler\CreteElement;
 
     class PublishHandler
@@ -68,5 +69,17 @@
                     OWPactConfig::$project_config->dir_owp.'/RegisteryOwpact.php";'."\n".'/* End call Owpact */';
 
             return $code;
+        }
+
+        /*
+         * get The Documentation
+         */
+        public static function  getDoc()
+        {
+            return array(
+                'trigger' => 'publish',
+                'demo' => "php owp publish",
+                'doc' => "Some time you want to create your own module on project with separates files and logic",
+            );
         }
     }

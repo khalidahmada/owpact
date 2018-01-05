@@ -7,7 +7,10 @@
 
         public function __construct($argv)
         {
+
             parent::__construct('ajax',$argv);
+
+
 
             $this->Handler();
         }
@@ -30,6 +33,22 @@
             die();
 
         }
+
+        /*
+         * get The Documentation
+         */
+        public static function  getDoc()
+        {
+            return array(
+                'trigger' => 'ajax',
+                'demo' => "php owp make ajax YourAjaxControllerName ajax_action_name ",
+                'doc' => "Create Ajax file to handler ajax request the action name will be the action value on wordpress ajax requests",
+            );
+        }
+
+
+
+
 
 
     }

@@ -27,5 +27,17 @@
             $create->CreateItem();
             die();
         }
+
+        /*
+         * get The Documentation
+         */
+        public static function  getDoc()
+        {
+            return array(
+                'trigger' => 'hook',
+                'demo' => "php owp make hook name hookCallback name ",
+                'doc' => "To create your hook into separate file example a hook whene admin_init doSomething with specific logic",
+            );
+        }
     }
 

@@ -39,5 +39,18 @@
             $create->CreateItem();
             die();
         }
+
+
+        /*
+         * get The Documentation
+         */
+        public static function  getDoc()
+        {
+            return array(
+                'trigger' => 'repo',
+                'demo' => "php owp repo YourRepoName and post_type name (the post_type is option)",
+                'doc' => "Repository pattern is very import into wordpress to separate data with templates . Once your create a repo to specific post type you can get only data of this post type"
+            );
+        }
     }
 

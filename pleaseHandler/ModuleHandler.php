@@ -47,4 +47,17 @@
         }
 
 
+        /*
+         * get The Documentation
+         */
+        public static function  getDoc()
+        {
+            return array(
+                'trigger' => 'module',
+                'demo' => "php owp make model YourModuleName",
+                'doc' => "Some time you want to create your own module on project with separates files and logic",
+            );
+        }
+
+
     }

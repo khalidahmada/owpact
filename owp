@@ -1,10 +1,10 @@
 #!/usr/bin/php
 <?php
+
+
     use pleaseHandler\AjaxHandler;
-    use pleaseHandler\CreteElement;
     use pleaseHandler\EmailHandler;
     use pleaseHandler\ExtraHandler;
-    use pleaseHandler\FunctionHandler;
     use pleaseHandler\FunctionsHandler;
     use pleaseHandler\HelperHandler;
     use pleaseHandler\HookHandler;
@@ -19,8 +19,13 @@
         /**
          * OWPactPlease constructor.
          */
+
+        private $handlersReferences;
+        private $handlers;
         public function __construct()
         {
+            $this->handlers = array();
+            $this->handlersReferences = array();
             $this->boot();
         }
 
@@ -30,6 +35,8 @@
             $this->RegisterModules();
             $this->RegisterHandler();
 
+            $this->RenderDoc();
+
             $this->HandlerCLI();
 
         }
@@ -38,11 +45,13 @@
         {
             $this->RegisterModule('base');
             $this->RegisterModule('pleaseHandler/CreateElement');
+            $this->RegisterModule('pleaseHandler/HandlerTrait');
         }
 
         private function RegisterHandler()
         {
-            $this->RegisterModule('pleaseHandler/PublishHandler');
+
+            $this->RegisterModule('pleaseHandler/PublishHandler','PublishHandler');
 
             $this->RegisterModule('pleaseHandler/HandlerPlease');
 
@@ -57,11 +66,15 @@
             $this->RegisterModule('pleaseHandler/TableViewHandler');
             $this->RegisterModule('pleaseHandler/ModuleHandler');
             $this->RegisterModule('pleaseHandler/FunctionsHandler');
+
         }
 
-        private function RegisterModule($module)
+        private function RegisterModule($module,$classReference=false)
         {
             require_once $module.'.php';
+            if($classReference){
+                $this->handlers[] = $classReference;
+            }
         }
 
         private function HandlerCLI()
@@ -74,7 +87,9 @@
 
                 if($current_cmd == 'make'){
 
-                    $error_not_valide_make = "Please enter valid entry example : (ajax , hook , helper repo ,email, module )";
+                    $error_not_valide_make = Console::white("Please enter valid entry:\n", 'white', true, 'red').
+
+                                             ":(ajax , hook , helper repo ,email, module, extra, tableview )";
 
                     $this->CheckIfAlreadyPublished();
                     if(isset($argv[2])){
@@ -92,7 +107,8 @@
                         $publish->Publish();
 
                     }else{
-                        echo "please Enter valid command";
+                        echo ">>>>> please Enter valid command";
+                        $this->PrintDoc();
                     }
                 }
 
@@ -107,6 +123,7 @@
          */
         private function ProcessHandler($argv)
         {
+
             new AjaxHandler($argv);
             new RepoHandler($argv);
             new EmailHandler($argv);
@@ -118,6 +135,8 @@
             new TableViewHandler($argv);
             new ModuleHandler($argv);
             new FunctionsHandler($argv);
+
+
         }
 
         private function CheckIfAlreadyPublished()
@@ -128,6 +147,36 @@
                 echo "Can't find the RegisteryOwpact.php in your project.".
                     "Do you published ? else please publish first 'php owp publish'";
                 die();
+            }
+        }
+
+        /*
+         * Generate Docs for Help
+         */
+        private function RenderDoc()
+        {
+            $this->handlers = array(
+                AjaxHandler::getDoc()
+            );
+        }
+
+
+        private  function PrintDoc()
+        {
+            if($this->handlers){
+                echo "\n";
+                echo Console::log('=================== OWPACT HELP ===============','green',false);
+                echo "\n";
+                foreach($this->handlers as $handler){
+                    echo "\n";
+                    echo Console::log($handler['trigger'],'cyan',false);
+                    echo Console::log(" ||  ",'bold',false);
+                    echo Console::log($handler['demo'].' : ','green',false);
+                    Console::log($handler['doc'],'white',false,'brown');
+                    echo "\n";
+                }
+                echo "\n";
+                echo Console::log('=================== OWPACT HELP ===============','green',false);
             }
         }
 
