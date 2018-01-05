@@ -39,4 +39,16 @@
         {
             CreteElement::CreateDirectory('Traits');
         }
+
+        /*
+         * get The Documentation
+         */
+        public static function  getDoc()
+        {
+            return array(
+                'trigger' => 'trait',
+                'demo' => "php owp trait TraitName",
+                'doc' => "Create easy Your Trait"
+            );
+        }
     }

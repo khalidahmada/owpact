@@ -156,7 +156,18 @@
         private function RenderDoc()
         {
             $this->handlers = array(
-                AjaxHandler::getDoc()
+
+                AjaxHandler::getDoc(),
+                RepoHandler::getDoc(),
+                EmailHandler::getDoc(),
+                HelperHandler::getDoc(),
+                HookHandler::getDoc(),
+                ExtraHandler::getDoc(),
+                RouteHandler::getDoc(),
+                TraitHandler::getDoc(),
+                TableViewHandler::getDoc(),
+                ModuleHandler::getDoc(),
+                FunctionsHandler::getDoc(),
             );
         }
 

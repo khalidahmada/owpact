@@ -31,4 +31,15 @@
             $create->CreateItem();
             die();
         }
+        /*
+         * get The Documentation
+         */
+        public static function  getDoc()
+        {
+            return array(
+                'trigger' => 'helper',
+                'demo' => "php owp make helper NameOfHelper(s)",
+                'doc' => "if you want create helper functions",
+            );
+        }
     }

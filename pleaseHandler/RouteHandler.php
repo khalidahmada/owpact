@@ -40,4 +40,16 @@
             CreteElement::CreateDirectory('Route');
             CreteElement::AddCallToFunctionIntoFile('/libs/BaseLibs.php','$this->RegisterRouterCore();','RegisterModules');
         }
+
+        /*
+         * get The Documentation
+         */
+        public static function  getDoc()
+        {
+            return array(
+                'trigger' => 'route',
+                'demo' => "php owp route YourPath (exemple /tuto/fufo/:param) and the controller Name as second param",
+                'doc' => "Create specific Route to your own wordpress project is often used so we make this easy."
+            );
+        }
     }

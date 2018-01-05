@@ -44,5 +44,17 @@
             CreteElement::CreateDirectory('TableViews');
         }
 
+        /*
+         * get The Documentation
+         */
+        public static function  getDoc()
+        {
+            return array(
+                'trigger' => 'tableview',
+                'demo' => "php owp tableview tableName (without prefix ) and the NameOf Your ControllerTable view",
+                'doc' => "If you want to create your own table view for specific table example newletter or other entry"
+            );
+        }
+
 
     }
