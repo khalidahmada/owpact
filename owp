@@ -9,7 +9,8 @@
     use pleaseHandler\HelperHandler;
     use pleaseHandler\HookHandler;
     use pleaseHandler\ModuleHandler;
-    use pleaseHandler\RepoHandler;
+use pleaseHandler\PublishHandler;
+use pleaseHandler\RepoHandler;
     use pleaseHandler\RouteHandler;
     use pleaseHandler\TableViewHandler;
     use pleaseHandler\TraitHandler;

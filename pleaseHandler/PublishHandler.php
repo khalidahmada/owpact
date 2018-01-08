@@ -1,5 +1,6 @@
 <?php
     namespace pleaseHandler;
+    use OWPactConfig;
     use pleaseHandler\CreteElement;
 
     class PublishHandler
