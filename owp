@@ -106,13 +106,16 @@ use pleaseHandler\RepoHandler;
                         $publish->Publish();
 
                     }else{
-                        echo Console::log("Please enter valid command",'red',true);
+                        if(!in_array($current_cmd,array('help','-h','H'))){
+                             Console::log("Please enter valid command",'red',true);
+                        }
                         $this->PrintDoc();
                     }
                 }
 
             }else{
-                echo "Please enter valid command";
+                Console::log("Please enter valid command",'red',true);
+                $this->PrintDoc();
             }
         }
 
@@ -171,7 +174,7 @@ use pleaseHandler\RepoHandler;
 
 
             foreach($this->handlers as $handler){
-                $this->triggers = array($handler['trigger']);
+                $this->triggers[] = $handler['trigger'];
             }
         }
 
@@ -180,30 +183,30 @@ use pleaseHandler\RepoHandler;
         {
             if($this->handlers){
                 echo "\n";
-                echo Console::log('=================== OWPACT HELP ===============','green',false);
+                Console::log('=================== OWPACT HELP ===============','green',false);
                 echo "\n";
                 foreach($this->handlers as $handler){
                     echo "\n";
-                    echo Console::log($handler['trigger'],'cyan',false);
-                    echo Console::log(" ||  ",'bold',false);
-                    echo Console::log($handler['demo'].' : ','green',false);
+                    Console::log($handler['trigger'],'cyan',false);
+                    Console::log(" ||  ",'bold',false);
+                    Console::log($handler['demo'].' : ','green',false);
                     Console::log($handler['doc'],'white',false,'brown');
                     echo "\n";
                 }
                 echo "\n";
-                echo Console::log('=================== OWPACT HELP ===============','green',false);
+                Console::log('=================== OWPACT HELP ===============','green',false);
             }
         }
 
         private function PrintAvailableTriggers()
         {
 
-            $word = Console::white("Please enter a valid entry:\n", 'white', true, 'red');
+            Console::log("Please enter a valid entry or type php owp help for help:", 'red', true);
 
-            foreach($this->triggers as $trigger){
-                $word .= Console::white($trigger,'white',true);
+            foreach($this->handlers as $handler){
+                Console::log($handler['trigger'].' : ','green',false);
+                Console::log($handler['demo'],'white',true);
             }
-            echo $word;
 
         }
 

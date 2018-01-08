@@ -42,7 +42,7 @@
             return array(
                 'trigger' => 'ajax',
                 'demo' => "php owp make ajax YourAjaxControllerName ajax_action_name ",
-                'doc' => "Create Ajax file to handler ajax request the action name will be the action value on wordpress ajax requests",
+                'doc' => "Create Ajax file to handler ajax request the action name will be the action value on Wordpress ajax requests",
             );
         }
 
