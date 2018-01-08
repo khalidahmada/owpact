@@ -22,9 +22,11 @@
 
         private $handlersReferences;
         private $handlers;
+        private $triggers;
         public function __construct()
         {
             $this->handlers = array();
+            $this->triggers = array();
             $this->handlersReferences = array();
             $this->boot();
         }
@@ -87,16 +89,12 @@
 
                 if($current_cmd == 'make'){
 
-                    $error_not_valide_make = Console::white("Please enter valid entry:\n", 'white', true, 'red').
-
-                                             ":(ajax , hook , helper repo ,email, module, extra, tableview )";
-
                     $this->CheckIfAlreadyPublished();
                     if(isset($argv[2])){
                                 $this->ProcessHandler($argv);
-                                echo $error_not_valide_make;
+                                $this->PrintAvailableTriggers();
                     }else{
-                        echo $error_not_valide_make;
+                        $this->PrintAvailableTriggers();
                     }
                 }else{
 
@@ -169,6 +167,11 @@
                 ModuleHandler::getDoc(),
                 FunctionsHandler::getDoc(),
             );
+
+
+            foreach($this->handlers as $handler){
+                $this->triggers = array($handler['trigger']);
+            }
         }
 
 
@@ -189,6 +192,18 @@
                 echo "\n";
                 echo Console::log('=================== OWPACT HELP ===============','green',false);
             }
+        }
+
+        private function PrintAvailableTriggers()
+        {
+
+            $word = Console::white("Please enter a valid entry:\n", 'white', true, 'red');
+
+            foreach($this->triggers as $trigger){
+                $word .= Console::white($trigger,'white',true);
+            }
+            echo $word;
+
         }
 
 
