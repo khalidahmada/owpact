@@ -9,13 +9,14 @@
     use pleaseHandler\HelperHandler;
     use pleaseHandler\HookHandler;
     use pleaseHandler\ModuleHandler;
-use pleaseHandler\PublishHandler;
-use pleaseHandler\RepoHandler;
+    use pleaseHandler\PublishHandler;
+    use pleaseHandler\RepoHandler;
     use pleaseHandler\RouteHandler;
     use pleaseHandler\TableViewHandler;
     use pleaseHandler\TraitHandler;
 
-    class OWPactPlease{
+    class OWPactPlease
+    {
 
         /**
          * OWPactPlease constructor.
@@ -24,11 +25,12 @@ use pleaseHandler\RepoHandler;
         private $handlersReferences;
         private $handlers;
         private $triggers;
+
         public function __construct()
         {
-            $this->handlers = array();
-            $this->triggers = array();
-            $this->handlersReferences = array();
+            $this->handlers=array();
+            $this->triggers=array();
+            $this->handlersReferences=array();
             $this->boot();
         }
 
@@ -54,7 +56,7 @@ use pleaseHandler\RepoHandler;
         private function RegisterHandler()
         {
 
-            $this->RegisterModule('pleaseHandler/PublishHandler','PublishHandler');
+            $this->RegisterModule('pleaseHandler/PublishHandler', 'PublishHandler');
 
             $this->RegisterModule('pleaseHandler/HandlerPlease');
 
@@ -72,11 +74,11 @@ use pleaseHandler\RepoHandler;
 
         }
 
-        private function RegisterModule($module,$classReference=false)
+        private function RegisterModule($module, $classReference=false)
         {
-            require_once $module.'.php';
-            if($classReference){
-                $this->handlers[] = $classReference;
+            require_once $module . '.php';
+            if ($classReference) {
+                $this->handlers[]=$classReference;
             }
         }
 
@@ -85,36 +87,36 @@ use pleaseHandler\RepoHandler;
 
             global $argv;
 
-            if($argv){
-                $current_cmd = $argv[1];
+            if ($argv) {
+                $current_cmd=$argv[1];
 
-                if($current_cmd == 'make'){
+                if ($current_cmd == 'make') {
 
                     $this->CheckIfAlreadyPublished();
-                    if(isset($argv[2])){
-                                $this->ProcessHandler($argv);
-                                $this->PrintAvailableTriggers();
-                    }else{
+                    if (isset($argv[2])) {
+                        $this->ProcessHandler($argv);
+                        $this->PrintAvailableTriggers();
+                    } else {
                         $this->PrintAvailableTriggers();
                     }
-                }else{
+                } else {
 
                     // Check if is Publish Case
-                    if($current_cmd == 'publish'){
+                    if ($current_cmd == 'publish') {
 
-                        $publish = new PublishHandler();
+                        $publish=new PublishHandler();
                         $publish->Publish();
 
-                    }else{
-                        if(!in_array($current_cmd,array('help','-h','H'))){
-                             Console::log("Please enter valid command",'red',true);
+                    } else {
+                        if (!in_array($current_cmd, array('help', '-h', 'H'))) {
+                            Console::log("Please enter valid command", 'red', true);
                         }
                         $this->PrintDoc();
                     }
                 }
 
-            }else{
-                Console::log("Please enter valid command",'red',true);
+            } else {
+                Console::log("Please enter valid command", 'red', true);
                 $this->PrintDoc();
             }
         }
@@ -143,10 +145,10 @@ use pleaseHandler\RepoHandler;
 
         private function CheckIfAlreadyPublished()
         {
-            $Registray_file = OWPactConfig::getOWPDir().'/RegisteryOwpact.php';
+            $Registray_file=OWPactConfig::getOWPDir() . '/RegisteryOwpact.php';
 
-            if(!file_exists($Registray_file)){
-                echo "Can't find the RegisteryOwpact.php in your project.".
+            if (!file_exists($Registray_file)) {
+                echo "Can't find the RegisteryOwpact.php in your project." .
                     "Do you published ? else please publish first 'php owp publish'";
                 die();
             }
@@ -157,7 +159,7 @@ use pleaseHandler\RepoHandler;
          */
         private function RenderDoc()
         {
-            $this->handlers = array(
+            $this->handlers=array(
 
                 AjaxHandler::getDoc(),
                 RepoHandler::getDoc(),
@@ -173,28 +175,28 @@ use pleaseHandler\RepoHandler;
             );
 
 
-            foreach($this->handlers as $handler){
-                $this->triggers[] = $handler['trigger'];
+            foreach ($this->handlers as $handler) {
+                $this->triggers[]=$handler['trigger'];
             }
         }
 
 
-        private  function PrintDoc()
+        private function PrintDoc()
         {
-            if($this->handlers){
+            if ($this->handlers) {
                 echo "\n";
-                Console::log('=================== OWPACT HELP ===============','green',false);
+                Console::log('=================== OWPACT HELP ===============', 'green', false);
                 echo "\n";
-                foreach($this->handlers as $handler){
+                foreach ($this->handlers as $handler) {
                     echo "\n";
-                    Console::log($handler['trigger'],'cyan',false);
-                    Console::log(" ||  ",'bold',false);
-                    Console::log($handler['demo'].' : ','green',false);
-                    Console::log($handler['doc'],'white',false,'brown');
+                    Console::log($handler['trigger'], 'cyan', false);
+                    Console::log(" ||  ", 'bold', false);
+                    Console::log($handler['demo'] . ' : ', 'green', false);
+                    Console::log($handler['doc'], 'white', false, 'brown');
                     echo "\n";
                 }
                 echo "\n";
-                Console::log('=================== OWPACT HELP ===============','green',false);
+                Console::log('=================== OWPACT HELP ===============', 'green', false);
             }
         }
 
@@ -203,9 +205,9 @@ use pleaseHandler\RepoHandler;
 
             Console::log("Please enter a valid entry or type php owp help for help:", 'red', true);
 
-            foreach($this->handlers as $handler){
-                Console::log($handler['trigger'].' : ','green',false);
-                Console::log($handler['demo'],'white',true);
+            foreach ($this->handlers as $handler) {
+                Console::log($handler['trigger'] . ' : ', 'green', false);
+                Console::log($handler['demo'], 'white', true);
             }
 
         }

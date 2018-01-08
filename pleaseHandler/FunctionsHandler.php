@@ -29,17 +29,34 @@
                     $baseDir = '';
                 }
 
+                $fn_name = false;
 
-                $this->Execute($nameFile,$baseDir);
+                if(isset($this->argv[4])){
+                    $fn_name = $this->argv[4];
+                    if($fn_name == '@') $fn_name = $nameFile;
+                }
+
+
+                $this->Execute($nameFile,$baseDir,$fn_name);
 
             }else{
                 echo "Please enter your function file name";
             }
         }
 
-        private function Execute($file_name,$baseDir)
+        private function Execute($file_name,$baseDir,$fn_name)
         {
-            $replaces = array("_NAME_" => $file_name);
+
+            $replacement_fn = '';
+
+            if($fn_name){
+                    $replacement_fn = $this->getFunctionReplacement($fn_name);
+            }
+
+            $replaces = array(
+                                '_NAME_' => $file_name,
+                                '//__fn__create'=> $replacement_fn
+            );
 
             $file_dist="";
 
@@ -74,11 +91,16 @@
         {
             return array(
                 'trigger' => 'function',
-                'demo' => "php owp make function FunctionsFileName ",
+                'demo' => "php owp make function FunctionsFileName (option name of function if you want use the same name type @)",
                 'doc' => "Create your separates file functions if you need separate functions into files".
                            "Note that your can create files into specific path exemple tuto/fufo/functionfilename".
                            "will create file into folder Functions with given path",
             );
+        }
+
+        private function getFunctionReplacement($fn_name)
+        {
+            return "function $fn_name(){\n//Your function logic here\n\n}";
         }
 
 
