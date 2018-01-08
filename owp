@@ -106,7 +106,7 @@ use pleaseHandler\RepoHandler;
                         $publish->Publish();
 
                     }else{
-                        echo ">>>>> please Enter valid command";
+                        echo Console::log("Please enter valid command",'red',true);
                         $this->PrintDoc();
                     }
                 }

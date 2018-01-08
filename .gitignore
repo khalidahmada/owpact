@@ -61,7 +61,10 @@ composer.lock
 
 wp-config.php
 wp-content/uploads
-wp-content/themes/morzine/languages
 
 
 /vendor/
+
+
+#OWPACT gitignore
+config/project.json
