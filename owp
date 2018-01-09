@@ -157,10 +157,17 @@
             if (!file_exists($Registray_file)) {
                 Console::log("Can't find the ","red",false);
                 echo Console::green("RegisteryOwpact.php","white",false,'black');
-                Console::log(" in your project","red",false,'white');
-                Console::log("please publish first :",'red',false);
+                Console::log(" in your project ","red",false,'white');
+                Console::log("please publish first: ",'red',false);
                 Console::log("php owp publish ",'green',false,'white');
-                Console::log("Or verify your config/project.json paths",'red');
+                Console::log("Or verify your config/project.json paths ",'red');
+                Console::log('You are current on path '.
+                    OWPactConfig::getCurrentDist(),'red'
+                );
+
+                Console::log(' check alose current_dist now is '.
+                    OWPactConfig::getCurrentDistVal(),'red'
+                );
                 die();
             }
         }

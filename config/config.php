@@ -26,6 +26,10 @@
 
         private  static function parseProject()
         {
+            $file = __DIR__.'/project.json';
+            if(!is_file($file)){
+                copy(__DIR__.'/project.json.dist' , $file);
+            }
             $project_json = file_get_contents(__DIR__.'/project.json');
             static::$project_config = json_decode($project_json);
         }
@@ -56,6 +60,11 @@
         {
             $dist = static::$project_config->{'current_dist'};
             return static::$project_config->{$dist};
+        }
+
+        public static function getCurrentDistVal()
+        {
+            return static::$project_config->{'current_dist'};
         }
 
         public static function getDir()

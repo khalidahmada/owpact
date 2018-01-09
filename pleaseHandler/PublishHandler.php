@@ -61,7 +61,7 @@
 
             }
 
-            echo "OWP is Done";
+            Console::log("OWP is Done!",'green');
         }
 
         private function GetAppendCoreToFunction()
