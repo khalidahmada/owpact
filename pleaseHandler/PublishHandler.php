@@ -1,5 +1,6 @@
 <?php
     namespace pleaseHandler;
+    use Console;
     use OWPactConfig;
     use pleaseHandler\CreteElement;
 
@@ -25,7 +26,7 @@
             if(!$this->checkDir()){
                 $this->PublishFolder();
             }else{
-                echo "Publish is Already Done go to ".OWPactConfig::getOWPDir();
+                Console::log("Publish is Already Done go to ".OWPactConfig::getOWPDir(),'red');
             }
         }
         public static function  checkDir()

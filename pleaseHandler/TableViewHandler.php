@@ -20,7 +20,7 @@
                 $this->CreateRequired();
                 $this->Execute($this->argv[3],$this->argv[4]);
             }else{
-                echo "Please Enter the table name (without prefix) and the page title";
+                $this->error("Please Enter the table name (without prefix) and the page title");
             }
         }
 

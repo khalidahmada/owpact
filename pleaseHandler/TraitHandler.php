@@ -23,7 +23,7 @@
 
 
             }else{
-                echo "Please Enter the name of trait";
+                $this->error("Please Enter the name of trait");
             }
         }
 

@@ -18,7 +18,7 @@
             if(isset($argv[3]) && isset($argv[4])){
                 $this->Execute($argv[3],$argv[4]);
             }else{
-                echo "Please enter email name and email template name";
+                $this->error("Please enter email name and email template name");
             }
         }
 

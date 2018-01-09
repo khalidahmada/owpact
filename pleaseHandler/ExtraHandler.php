@@ -16,7 +16,7 @@
             if(isset($this->argv[3])){
                 $this->Execute($this->argv[3]);
             }else{
-                echo "Please Enter name of your extra class";
+                $this->error("Please Enter name of your extra class");
             }
         }
 

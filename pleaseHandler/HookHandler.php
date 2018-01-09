@@ -17,7 +17,7 @@
             if(isset($this->argv[3]) && isset($this->argv[4])){
                 $this->Execute($this->argv[3],$this->argv[4]);
             }else{
-                echo "Please enter two params hook name and the function callback name";
+                $this->error("Please enter two params hook name and the function callback name");
             }
         }
 

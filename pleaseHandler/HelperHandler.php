@@ -17,7 +17,7 @@
             if(isset($this->argv[3])){
                 $this->Execute($this->argv[3]);
             }else{
-                echo "Please enter Helper Name";
+                $this->error("Please enter Helper Name");
             }
         }
 

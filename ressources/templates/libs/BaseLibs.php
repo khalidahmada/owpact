@@ -22,8 +22,6 @@
         }
 
 
-
-
         private function RegisterModule($module)
         {
             $file_name = $module;

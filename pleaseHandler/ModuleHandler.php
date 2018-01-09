@@ -20,7 +20,7 @@
                 $this->PrepareForSetUpModules($this->argv[3]);
                 $this->Execute($this->argv[3]);
             }else{
-                echo "Please enter your module name";
+                $this->error("Please enter your module name");
             }
         }
 

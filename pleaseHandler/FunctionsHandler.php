@@ -40,7 +40,7 @@
                 $this->Execute($nameFile,$baseDir,$fn_name);
 
             }else{
-                echo "Please enter your function file name";
+                $this->error("Please enter your function file name");
             }
         }
 

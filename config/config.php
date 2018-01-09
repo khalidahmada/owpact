@@ -26,7 +26,7 @@
 
         private  static function parseProject()
         {
-            $project_json = file_get_contents('config/project.json');
+            $project_json = file_get_contents(__DIR__.'/project.json');
             static::$project_config = json_decode($project_json);
         }
 
@@ -46,7 +46,16 @@
 
         public static function getDirectory()
         {
-            return __DIR__.'/'.static::$project_config->path_global_theme;
+            return __DIR__.'/'.static::getCurrentDist();
+        }
+
+        /*
+         * get current
+         */
+        public static function getCurrentDist()
+        {
+            $dist = static::$project_config->{'current_dist'};
+            return static::$project_config->{$dist};
         }
 
         public static function getDir()
@@ -56,7 +65,7 @@
 
         public static function getGlobalPath()
         {
-            return static::$project_config->path_global_theme;
+            return static::getCurrentDist();
         }
 
         /*
@@ -79,6 +88,10 @@
             return static::getDirectory().'functions.php';
         }
 
+        public static function getPagesDir()
+        {
+            return static::getDirectory().static::$project_config->pages_dist;
+        }
 
 
     }

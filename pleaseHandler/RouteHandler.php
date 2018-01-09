@@ -23,7 +23,7 @@
 
 
             }else{
-                echo "Please Enter two params path example /foo/tuto and the handler name";
+                $this->error("Please Enter two params path example /foo/tuto and the handler name");
             }
         }
 

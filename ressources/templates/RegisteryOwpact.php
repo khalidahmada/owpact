@@ -43,6 +43,7 @@
             $this->RegisterExtra();
             $this->RegisterModules();
             $this->RegisterAjax();
+            $this->RegisterQueues();
         }
 
 
@@ -97,6 +98,9 @@
         }
 
         private function RegisterTraits(){
+
+        }
+        private function RegisterQueues(){
 
         }
 

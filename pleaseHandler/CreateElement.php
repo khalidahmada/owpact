@@ -2,6 +2,8 @@
     namespace pleaseHandler;
 
 
+    use Console;
+
     class CreteElement {
 
        public $replaces = array();
@@ -11,7 +13,7 @@
        public $template;
        public $RegistrayEntry;
 
-        public $extra_files = array();
+       public $extra_files = array();
 
         public function __construct($fileName, array $replaces,$type,$template,$RegistrayEntry,$extra_files = array())
         {
@@ -28,7 +30,7 @@
         public function CreateItem()
         {
             if($this->isExist()){
-                echo "$this->type $this->fileName is already exist!";
+                Console::log("$this->type $this->fileName is already exist!",'red');
             }else{
                 $this->handlerElement();
             }
@@ -52,12 +54,18 @@
                     // crete File to Path
                     $saved = file_put_contents($this->full_path,$content);
 
-                    $updated = $this->UpdateRegistery();
+                    $updated = false;
+
+                    if($this->RegistrayEntry){
+                        $updated = $this->UpdateRegistery();
+                    }else{
+                        $updated = true;
+                    }
 
                     // Create Extra Files
                     $this->CreateExtraFiles();
                     if($updated && $saved){
-                        echo "$this->type $this->fileName has been created !";
+                        Console::log("$this->type ". basename($this->fileName)." has been created !",'green');
                         die();
                     }
                 }

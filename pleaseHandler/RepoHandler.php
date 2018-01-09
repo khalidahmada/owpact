@@ -22,7 +22,7 @@
                 }
                 $this->Execute($this->argv[3],$post_type);
             }else{
-                echo "Please enter repo name";
+                $this->error("Please enter repo name");
             }
         }
 

@@ -9,7 +9,9 @@
     use pleaseHandler\HelperHandler;
     use pleaseHandler\HookHandler;
     use pleaseHandler\ModuleHandler;
+    use pleaseHandler\PageHandler;
     use pleaseHandler\PublishHandler;
+    use pleaseHandler\QueueHandler;
     use pleaseHandler\RepoHandler;
     use pleaseHandler\RouteHandler;
     use pleaseHandler\TableViewHandler;
@@ -51,6 +53,7 @@
             $this->RegisterModule('base');
             $this->RegisterModule('pleaseHandler/CreateElement');
             $this->RegisterModule('pleaseHandler/HandlerTrait');
+            $this->RegisterModule('pleaseHandler/Handleable');
         }
 
         private function RegisterHandler()
@@ -71,6 +74,8 @@
             $this->RegisterModule('pleaseHandler/TableViewHandler');
             $this->RegisterModule('pleaseHandler/ModuleHandler');
             $this->RegisterModule('pleaseHandler/FunctionsHandler');
+            $this->RegisterModule('pleaseHandler/QueueHandler');
+            $this->RegisterModule('pleaseHandler/PageHandler');
 
         }
 
@@ -87,7 +92,7 @@
 
             global $argv;
 
-            if ($argv) {
+            if (isset($argv) &&isset($argv[1])) {
                 $current_cmd=$argv[1];
 
                 if ($current_cmd == 'make') {
@@ -139,6 +144,8 @@
             new TableViewHandler($argv);
             new ModuleHandler($argv);
             new FunctionsHandler($argv);
+            new QueueHandler($argv);
+            new PageHandler($argv);
 
 
         }
@@ -148,8 +155,12 @@
             $Registray_file=OWPactConfig::getOWPDir() . '/RegisteryOwpact.php';
 
             if (!file_exists($Registray_file)) {
-                echo "Can't find the RegisteryOwpact.php in your project." .
-                    "Do you published ? else please publish first 'php owp publish'";
+                Console::log("Can't find the ","red",false);
+                echo Console::green("RegisteryOwpact.php","white",false,'black');
+                Console::log(" in your project","red",false,'white');
+                Console::log("please publish first :",'red',false);
+                Console::log("php owp publish ",'green',false,'white');
+                Console::log("Or verify your config/project.json paths",'red');
                 die();
             }
         }
@@ -172,6 +183,8 @@
                 TableViewHandler::getDoc(),
                 ModuleHandler::getDoc(),
                 FunctionsHandler::getDoc(),
+                QueueHandler::getDoc(),
+                PageHandler::getDoc(),
             );
 
 

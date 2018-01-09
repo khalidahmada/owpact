@@ -1,6 +1,8 @@
 <?php
     namespace pleaseHandler;
 
+    use Console;
+
     abstract class HandlerPlease{
 
         //use \HandlerTrait;
@@ -27,6 +29,10 @@
             if($this->argv[2] == $this->trigger) $this->match = true;
 
 
+        }
+
+        public function error($message){
+            Console::log($message,'red');
         }
 
 

@@ -22,7 +22,7 @@
             if(isset($this->argv[3]) && isset($this->argv[4])){
                 $this->Execute($this->argv[3],$this->argv[4]);
             }else{
-                echo "Please Enter two params AjaxController Name and the action name";
+                $this->error("Please Enter two params AjaxController Name and the action name");
             }
         }
 
