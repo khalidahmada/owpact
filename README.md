@@ -1,6 +1,6 @@
-# README #
+# OWPACT #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+OWPACT is basic php CLI wite by Khalid Ahmada for Wordpress project.Allows you to speedup production into wordpress Project. inspired from php artisan of laravel 
 
 ### What is this repository for? ###
 
@@ -10,14 +10,14 @@ This README would normally document whatever steps are necessary to get your app
 
 ### How do I get set up? ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+* get owpact folder
+* copy config/project.json.dist to config/project.json
+* add into the file your project name as key and the path to your current theme
+* Once you configure the config/project.json you have now owpact
+* Run your first owpact command you need to publish the boilereplate to your theme by simple command `php owp publish` this will clone the owp/ressources/templates to your theme by defaut your_theme/inc/owp
+* great you have know owp in your project
 
-### Contribution guidelines ###
+### Files and ecosysteme  ###
 
 * Writing tests
 * Code review
