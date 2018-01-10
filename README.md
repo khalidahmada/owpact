@@ -21,4 +21,4 @@ to get help type `php owp help` to see list of features.
 
 ### Author  ###
 Khalid Ahmada
-Follow on Twitter [@khalidahmada]: https://twitter.com/khalidahmada
+Follow on Twitter [khalidahmada]: https://twitter.com/khalidahmada
