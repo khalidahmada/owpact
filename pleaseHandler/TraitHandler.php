@@ -5,7 +5,7 @@
 
         public function __construct($argv)
         {
-            parent::__construct('trait',$argv);
+            parent::__construct('trait',$argv,'make');
 
             $this->Handler();
         }

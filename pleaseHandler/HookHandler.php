@@ -5,7 +5,7 @@
 
         public function __construct($argv)
         {
-            parent::__construct('hook',$argv);
+            parent::__construct('hook',$argv,'make');
 
             $this->Handler();
         }

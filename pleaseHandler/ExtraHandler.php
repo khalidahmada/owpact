@@ -4,7 +4,7 @@
     class ExtraHandler extends HandlerPlease{
         public function __construct($argv)
         {
-            parent::__construct('extra',$argv);
+            parent::__construct('extra',$argv,'make');
 
             $this->Handler();
         }

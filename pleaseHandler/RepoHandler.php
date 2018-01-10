@@ -6,7 +6,7 @@
 
         public function __construct($argv)
         {
-            parent::__construct('repo',$argv);
+            parent::__construct('repo',$argv,'make');
 
             $this->Handler();
         }

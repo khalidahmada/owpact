@@ -5,7 +5,7 @@
 
         public function __construct($argv)
         {
-            parent::__construct('route',$argv);
+            parent::__construct('route',$argv,'make');
 
             $this->Handler();
         }

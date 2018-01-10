@@ -5,7 +5,7 @@
 
         public function __construct($argv)
         {
-            parent::__construct('email',$argv);
+            parent::__construct('email',$argv,'make');
 
             $this->Handler();
         }

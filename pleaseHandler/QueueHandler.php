@@ -9,7 +9,7 @@
 
         public function __construct($argv)
         {
-            parent::__construct('queue',$argv);
+            parent::__construct('queue',$argv,'make');
 
             $this->Handler();
         }

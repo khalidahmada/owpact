@@ -21,12 +21,16 @@
          * @param $trigger
          * @param $argv
          */
-        public function __construct($trigger, $argv)
+        public function __construct($trigger, $argv,$scope ='')
         {
             $this->trigger=$trigger;
             $this->argv=$argv;
 
-            if($this->argv[2] == $this->trigger) $this->match = true;
+            if($scope!=''){
+                if($this->argv[1] != $scope) return false;
+            }
+
+            if($this->argv[2] == $this->trigger || ($scope=='' && $this->argv[1] == $this->trigger)) $this->match = true;
 
 
         }

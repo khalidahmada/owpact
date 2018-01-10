@@ -9,7 +9,7 @@
         use Handleable;
         public function __construct($argv)
         {
-            parent::__construct('page',$argv);
+            parent::__construct('page',$argv,'make');
 
             $this->Handler();
         }

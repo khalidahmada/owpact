@@ -7,7 +7,7 @@
 
         public function __construct($argv)
         {
-            parent::__construct('module',$argv);
+            parent::__construct('module',$argv,'make');
 
             $this->Handler();
         }

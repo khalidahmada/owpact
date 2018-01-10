@@ -14,8 +14,10 @@
     use pleaseHandler\QueueHandler;
     use pleaseHandler\RepoHandler;
     use pleaseHandler\RouteHandler;
+    use pleaseHandler\SwitchProjectHandler;
     use pleaseHandler\TableViewHandler;
     use pleaseHandler\TraitHandler;
+
 
     class OWPactPlease
     {
@@ -41,9 +43,7 @@
 
             $this->RegisterModules();
             $this->RegisterHandler();
-
             $this->RenderDoc();
-
             $this->HandlerCLI();
 
         }
@@ -76,6 +76,7 @@
             $this->RegisterModule('pleaseHandler/FunctionsHandler');
             $this->RegisterModule('pleaseHandler/QueueHandler');
             $this->RegisterModule('pleaseHandler/PageHandler');
+            $this->RegisterModule('pleaseHandler/Extras/SwitchProjectHandler');
 
         }
 
@@ -93,32 +94,33 @@
             global $argv;
 
             if (isset($argv) &&isset($argv[1])) {
+
                 $current_cmd=$argv[1];
 
-                if ($current_cmd == 'make') {
+                // Check if is Publish Case
+                if ($current_cmd == 'publish') {
+
+                    $publish=new PublishHandler();
+                    $publish->Publish();
+
+                } else {
 
                     $this->CheckIfAlreadyPublished();
+
                     if (isset($argv[2])) {
                         $this->ProcessHandler($argv);
                         $this->PrintAvailableTriggers();
                     } else {
                         $this->PrintAvailableTriggers();
                     }
-                } else {
 
-                    // Check if is Publish Case
-                    if ($current_cmd == 'publish') {
 
-                        $publish=new PublishHandler();
-                        $publish->Publish();
-
-                    } else {
-                        if (!in_array($current_cmd, array('help', '-h', 'H'))) {
-                            Console::log("Please enter valid command", 'red', true);
-                        }
-                        $this->PrintDoc();
+                    if (!in_array($current_cmd, array('help', '-h', 'H'))) {
+                        Console::log("Please enter valid command", 'red', true);
                     }
+                    $this->PrintDoc();
                 }
+
 
             } else {
                 Console::log("Please enter valid command", 'red', true);
@@ -146,6 +148,7 @@
             new FunctionsHandler($argv);
             new QueueHandler($argv);
             new PageHandler($argv);
+            new SwitchProjectHandler($argv);
 
 
         }
@@ -192,12 +195,9 @@
                 FunctionsHandler::getDoc(),
                 QueueHandler::getDoc(),
                 PageHandler::getDoc(),
+                SwitchProjectHandler::getDoc(),
             );
 
-
-            foreach ($this->handlers as $handler) {
-                $this->triggers[]=$handler['trigger'];
-            }
         }
 
 

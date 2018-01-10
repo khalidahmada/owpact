@@ -59,6 +59,7 @@
         public static function getCurrentDist()
         {
             $dist = static::$project_config->{'current_dist'};
+
             return static::$project_config->{$dist};
         }
 
@@ -100,6 +101,29 @@
         public static function getPagesDir()
         {
             return static::getDirectory().static::$project_config->pages_dist;
+        }
+
+        /*
+         * Switch To Theme
+         */
+        public static function SwitchToTheme($theme_to_switch)
+        {
+            // we get the current Value
+            static::parseProject();
+
+            static::$project_config->current_dist = $theme_to_switch;
+
+            $newObject = json_encode(static::$project_config,JSON_PRETTY_PRINT);
+
+            $newObject = str_replace('\/' , '/',$newObject);
+
+            $status = file_put_contents(__DIR__.'/project.json',$newObject);
+
+            // we get the current Value
+            static::parseProject();
+
+            return $status;
+
         }
 
 

@@ -8,7 +8,7 @@
         public function __construct($argv)
         {
 
-            parent::__construct('ajax',$argv);
+            parent::__construct('ajax',$argv,'make');
 
 
 

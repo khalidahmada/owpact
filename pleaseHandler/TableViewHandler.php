@@ -7,7 +7,7 @@
 
         public function __construct($argv)
         {
-            parent::__construct('tableview',$argv);
+            parent::__construct('tableview',$argv,'make');
 
             $this->Handler();
         }
