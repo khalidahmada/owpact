@@ -57,7 +57,7 @@
                     $updated = false;
 
                     if($this->RegistrayEntry){
-                        $updated = $this->UpdateRegistery();
+                        $updated = $this->UpdateRegistry();
                     }else{
                         $updated = true;
                     }
@@ -73,11 +73,11 @@
         }
 
         // Update the Registary
-        private function UpdateRegistery()
+        private function UpdateRegistry()
         {
-            $Registray_file = \OWPactConfig::getOWPDir().'/RegisteryOwpact.php';
+            $Registry_file = \OWPactConfig::getRegistryPath();
 
-            $content = file_get_contents($Registray_file );
+            $content = file_get_contents($Registry_file );
 
             if($content){
 
@@ -89,7 +89,7 @@
 
 
 
-                return file_put_contents($Registray_file,$content);
+                return file_put_contents($Registry_file,$content);
             }
 
             return false;

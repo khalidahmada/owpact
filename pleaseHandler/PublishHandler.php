@@ -26,7 +26,7 @@
             if(!$this->checkDir()){
                 $this->PublishFolder();
             }else{
-                Console::log("Publish is Already Done go to ".OWPactConfig::getOWPDir(),'red');
+                Console::log("Publish is already Done go to ".OWPactConfig::getOWPDir(),'red');
             }
         }
         public static function  checkDir()
@@ -54,23 +54,25 @@
 
             if($function_content){
 
-                if(!strpos($function_content,'RegisteryOwpact.php')){
+                if(!strpos($function_content,'RegistryOwpact.php')){
                     $function_content.= $this->GetAppendCoreToFunction();
                     file_put_contents($function_file,$function_content);
                 }
 
             }
 
-            Console::log("OWP is Done!",'green');
+            Console::log("OWP is done!",'green');
         }
 
         private function GetAppendCoreToFunction()
         {
+
             $code = "\n".'/* * Call the Owpact core */ '.
                     "\n".'require get_stylesheet_directory() ."/'.
-                    OWPactConfig::$project_config->dir_owp.'/RegisteryOwpact.php";'."\n".'/* End call Owpact */';
+                    OWPactConfig::$project_config->dir_owp.'/RegistryOwpact.php";'."\n".'/* End call Owpact */';
 
             return $code;
+
         }
 
         /*

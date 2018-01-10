@@ -155,11 +155,11 @@
 
         private function CheckIfAlreadyPublished()
         {
-            $Registray_file=OWPactConfig::getOWPDir() . '/RegisteryOwpact.php';
+            $Registray_file=OWPactConfig::getRegistryPath();
 
             if (!file_exists($Registray_file)) {
                 Console::log("Can't find the ","red",false);
-                echo Console::green("RegisteryOwpact.php","white",false,'black');
+                echo Console::green("RegistryOwpact.php","white",false,'black');
                 Console::log(" in your project ","red",false,'white');
                 Console::log("please publish first: ",'red',false);
                 Console::log("php owp publish ",'green',false,'white');

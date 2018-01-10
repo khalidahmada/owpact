@@ -11,7 +11,7 @@
         }
     }
 
-    class RegisteryOwpact  {
+    class RegistryOwpact  {
 
         /**
          * RegisteryOwpact constructor.
@@ -44,6 +44,7 @@
             $this->RegisterModules();
             $this->RegisterAjax();
             $this->RegisterQueues();
+            $this->RegisterFunctions();
         }
 
 
@@ -124,4 +125,4 @@
 
     }
 
-    new RegisteryOwpact();
+    new RegistryOwpact();

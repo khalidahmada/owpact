@@ -13,8 +13,6 @@
 
             parent::__construct('switch',$argv);
 
-
-
             $this->Handler();
         }
 
@@ -40,7 +38,7 @@
         private function Execute()
         {
             $themeName = OWPactConfig::getCurrentDistVal();
-            Console::log("Switch is done ! your current Theme know is $themeName",'green');
+            Console::log("Switch is done! your current Theme know is $themeName",'green');
             die();
 
         }
@@ -53,13 +51,14 @@
             $current = OWPactConfig::getCurrentDistVal();
 
             if($current == $theme_to_switch) {
-                Console::log("You already on Theme $theme_to_switch",'brown');
+                Console::log("You are already on theme $theme_to_switch",'brown');
                 die();
             }
 
             if( ! isset(OWPactConfig::$project_config->{$theme_to_switch}) ){
 
-                $this->error("Theme $theme_to_switch is not found in your project.json please declare your theme into your project.".
+                $this->error("Theme $theme_to_switch is not found in your project.".
+                             "json please declare your theme into your project.".
                              "json file as 'themename':'path_to_theme'"
                 );
 

@@ -126,6 +126,14 @@
 
         }
 
+        /*
+         * Get the Registry Path
+         */
+        public static function getRegistryPath()
+        {
+            return static::getOWPDir().'/RegistryOwpact.php';
+        }
+
 
     }
 
