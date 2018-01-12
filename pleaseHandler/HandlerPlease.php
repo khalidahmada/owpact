@@ -15,6 +15,7 @@
 
         public $argv;
         public $match = false;
+        public $scope = '';
 
         protected $trigger_childes = array();
         /**
@@ -23,28 +24,32 @@
         private $child_trigger;
 
 
-        /**
-         * HandlerPlease constructor.
-         * @param $trigger
-         * @param $argv
-         * @param string $scope
-         * @param array $child_trigger
-         */
         public function __construct($trigger, $argv, $scope ='', $trigger_childes=array())
         {
             $this->trigger=$trigger;
             $this->argv=$argv;
+            $this->scope=$scope;
             $this->trigger_childes=$trigger_childes;
 
-            if($scope!=''){
-                if($this->argv[1] != $scope){
+            $this->isMatch();
+
+
+        }
+
+        /*
+         * Test if is the handler taker
+         */
+        protected function isMatch()
+        {
+            if($this->scope!=''){
+                if($this->argv[1] != $this->scope){
                     return false;
                 }
             }
 
-            if($this->argv[2] == $this->trigger || ($scope=='' && $this->argv[1] == $this->trigger)) $this->match = true;
-
-
+            if($this->argv[2] == $this->trigger || ($this->scope=='' && $this->argv[1] == $this->trigger)) {
+                $this->match = true;
+            }
 
         }
 
