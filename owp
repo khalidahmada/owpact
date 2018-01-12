@@ -2,6 +2,7 @@
 <?php
 
 
+    use pleaseHandler\AdminGroupHandler;
     use pleaseHandler\AjaxHandler;
     use pleaseHandler\EmailHandler;
     use pleaseHandler\ExtraHandler;
@@ -77,6 +78,7 @@
             $this->RegisterModule('pleaseHandler/QueueHandler');
             $this->RegisterModule('pleaseHandler/PageHandler');
             $this->RegisterModule('pleaseHandler/Extras/SwitchProjectHandler');
+            $this->RegisterModule('pleaseHandler/AdminGroupHandler');
 
         }
 
@@ -149,7 +151,7 @@
             new QueueHandler($argv);
             new PageHandler($argv);
             new SwitchProjectHandler($argv);
-
+            new AdminGroupHandler($argv);
 
         }
 
@@ -196,6 +198,7 @@
                 QueueHandler::getDoc(),
                 PageHandler::getDoc(),
                 SwitchProjectHandler::getDoc(),
+                AdminGroupHandler::getDoc(),
             );
 
         }

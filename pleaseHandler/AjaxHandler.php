@@ -10,8 +10,6 @@
 
             parent::__construct('ajax',$argv,'make');
 
-
-
             $this->Handler();
         }
 
