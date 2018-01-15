@@ -38,7 +38,7 @@
         private function Execute()
         {
             $themeName = OWPactConfig::getCurrentDistVal();
-            Console::log("Switch is done! your current Theme know is $themeName",'green');
+            Console::log("Switch is done! your current theme now is $themeName",'green');
             die();
 
         }
