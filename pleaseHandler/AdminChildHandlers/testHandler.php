@@ -48,7 +48,10 @@ class testHandler extends ChildHandler{
      */
     protected function Execute()
     {
-        $this->success('hiiiiiiiiiii');
+        CreteElement::CreateMethodIntoRegistry('stawtaw');
+
+
+        $this->success('Is Done');
         die();
 
     }

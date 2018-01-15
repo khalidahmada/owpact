@@ -142,4 +142,35 @@
         }
 
 
+        /*
+         * Create and call function into the RegisterExtraHandlers method
+         * Registery
+         * @param $methodName file method
+         */
+        public static function CreateMethodIntoRegistry($methodName,$methodNameIntoRegistryFile='RegisterExtraHandlers')
+        {
+            $Registry_file = \OWPactConfig::getRegistryPath();
+            $content = file_get_contents($Registry_file );
+
+            $formMethod = "private function $methodName(){";
+            $str_entry = "private function $methodNameIntoRegistryFile(){";
+
+
+
+            if($content){
+                echo "file exist";
+                if(!strpos($content,$formMethod)){
+
+                    if(strpos($content,$str_entry)){
+                        $newReplacement = $formMethod."\n\n\t \t}\n\n\t \t".$str_entry."\n\t \t \t".'$this->'.$methodName.'();';
+                        $content = str_replace($str_entry,$newReplacement,$content);
+                        file_put_contents($Registry_file,$content);
+                    }
+                }
+
+
+            }
+        }
+
+
     }

@@ -22,9 +22,7 @@
         }
 
 
-
-        private function boot()
-        {
+        private function boot(){
             // Load Configs
             $this->LoadConfigs();
             // Helpers
@@ -45,6 +43,13 @@
             $this->RegisterAjax();
             $this->RegisterQueues();
             $this->RegisterFunctions();
+
+            // call extra
+            $this->RegisterExtraHandlers();
+        }
+
+        private function RegisterExtraHandlers(){
+
         }
 
 
@@ -65,6 +70,10 @@
             $this->RegisterModule('Repo/TraitRepo');
             $this->RegisterModule('Ajax/BaseAjax');
         }
+
+        /*
+         * Entry Functions
+         */
 
         private function RegisterHooks(){
 
