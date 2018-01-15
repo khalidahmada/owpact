@@ -5,13 +5,15 @@
     use Console;
     use pleaseHandler\AdminChildHandlers\testHandler;
 
-    class AdminGroupHandler extends HandlerPlease{
+    class AdminGroupHandler extends HandlerGroup{
 
         /**
          * AdminGroupHandler constructor.
          */
         protected $handlers = array();
         protected $docs = array();
+
+
         public function __construct($argv)
         {
 
@@ -26,8 +28,9 @@
         /*
          * Handler Event
          */
-        private function Handler()
+        protected function Handler()
         {
+
             if(!$this->match) return;
 
 
@@ -43,58 +46,24 @@
             }
 
         }
+
         /*
-         * Required Handler Childs  file
-         */
-        private function RequireLibs()
+        * Required Handler Childs  file
+        */
+        protected function RequireLibs()
         {
-            $this->RegisterHandler('AdminChildHandlers/testHandler');
+            $this->RegisterHandler(__DIR__.'/AdminChildHandlers/testHandler');
         }
 
         /*
-         * Init Handlers child
+         * Call Your handlers
+         * here
          */
-        private function initHandlers()
+        protected function LoadHandlers()
         {
-            $this->RequireLibs();
-
-
             $this->handlers = array(
                 testHandler::class,
             );
-
-            $this->createDocs();
-
-            // Apply handlers
-            $this->ApplyHandlers();
-        }
-
-        /*
-         * Create Doc
-         */
-        private function  createDocs(){
-            if($this->handlers){
-                foreach($this->handlers as $handler){
-                    $this->docs[]=($handler)::getDoc();
-                }
-            }
-        }
-
-        /*
-         * Print Document
-         */
-        private function PrintDocs()
-        {
-            echo "\n";
-            foreach ($this->docs as $doc) {
-                echo "\n";
-                Console::log($doc['trigger'], 'cyan', false);
-                Console::log(" ||  ", 'bold', false);
-                Console::log($doc['demo'] . ' : ', 'green', false);
-                Console::log($doc['doc'], 'white', false, 'brown');
-                echo "\n";
-            }
-            echo "\n";
         }
 
 
@@ -111,25 +80,7 @@
         }
 
 
-        /*
-         * Apply Handlers
-         */
-        private function ApplyHandlers()
-        {
-            if($this->handlers){
-                foreach($this->handlers as $handler){
-                    new $handler($this->argv);
-                }
-            }
-        }
 
-
-
-
-        private function RegisterHandler($handler)
-        {
-            require_once $handler.'.php';
-        }
 
 
 

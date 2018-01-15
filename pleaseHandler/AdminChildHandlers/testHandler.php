@@ -24,7 +24,7 @@ class testHandler extends HandlerPlease{
         return $this->argv[2] == $this->trigger;
     }
 
-    private function Handler()
+    protected function Handler()
     {
         if(!$this->isMatch()) return;
 

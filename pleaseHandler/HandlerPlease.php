@@ -18,6 +18,10 @@
         public $scope = '';
 
         protected $trigger_childes = array();
+
+        abstract public static function getDoc();
+        abstract protected function Handler();
+
         /**
          * @var array
          */

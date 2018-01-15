@@ -13,7 +13,7 @@
             $this->Handler();
         }
 
-        private function Handler()
+        protected function Handler()
         {
             if(!$this->match) return;
 
