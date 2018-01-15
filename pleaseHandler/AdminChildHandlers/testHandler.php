@@ -3,10 +3,11 @@ namespace pleaseHandler\AdminChildHandlers;
 
 
 use Console;
+use pleaseHandler\ChildHandler;
 use pleaseHandler\CreteElement;
 use pleaseHandler\HandlerPlease;
 
-class testHandler extends HandlerPlease{
+class testHandler extends ChildHandler{
 
 
     public function __construct($argv)
@@ -14,19 +15,25 @@ class testHandler extends HandlerPlease{
 
         parent::__construct('test',$argv,'');
 
-        $this->isMatch();
+        $this->isTrigger();
 
         $this->Handler();
     }
 
-    protected function isMatch()
+    /*
+     * is Trigger
+     */
+    protected function isTrigger()
     {
         return $this->argv[2] == $this->trigger;
     }
 
+    /*
+     * Handler
+     */
     protected function Handler()
     {
-        if(!$this->isMatch()) return;
+        if(!$this->isTrigger()) return;
 
         if(isset($this->argv[2])){
            $this->Execute();
@@ -37,11 +44,11 @@ class testHandler extends HandlerPlease{
     }
 
     /*
-     * The logic of Execute on this
+     * The logic to Execute this
      */
-    private function Execute()
+    protected function Execute()
     {
-        Console::log('hiiiiiiiiiii','green');
+        $this->success('hiiiiiiiiiii');
         die();
 
     }

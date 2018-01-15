@@ -64,6 +64,7 @@
 
             $this->RegisterModule('pleaseHandler/HandlerPlease');
             $this->RegisterModule('pleaseHandler/HandlerGroup');
+            $this->RegisterModule('pleaseHandler/ChildHandler');
 
             $this->RegisterModule('pleaseHandler/AjaxHandler');
             $this->RegisterModule('pleaseHandler/EmailHandler');

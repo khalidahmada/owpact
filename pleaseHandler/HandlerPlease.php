@@ -61,6 +61,14 @@
             Console::log($message,'red');
         }
 
+        public function success($message){
+            Console::log($message,'green');
+        }
+
+        public function warning($message){
+            Console::log($message,'brown');
+        }
+
         /*
          * is in the Child Trigger Array
          */
