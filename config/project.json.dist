@@ -3,6 +3,10 @@
   "jacquemus":"../../../jacquemus/wp-content/themes/storefront-child/",
   "test":"/../../wp-content/themes/test/",
   "path_global_theme" : "/../../wp-content/themes/test/",
+  "projects" : [
+      {"jacquemus":"../../../jacquemus/wp-content/themes/storefront-child/"},
+      {"test":"/../../wp-content/themes/test/"}
+  ],
   "current_dist" : "test",
   "dir_inc" : "inc/",
   "dir_owp" : "inc/owp",

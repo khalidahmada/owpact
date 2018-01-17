@@ -16,6 +16,9 @@
             $this->Handler();
         }
 
+        /*
+         * Handler
+         */
         protected function Handler()
         {
             if(!$this->match) return;
@@ -35,10 +38,13 @@
             }
         }
 
+        /*
+         * Execute Logic
+         */
         private function Execute()
         {
             $themeName = OWPactConfig::getCurrentDistVal();
-            Console::log("Switch is done! your current theme now is $themeName",'green');
+            $this->success("Switch is done! your current theme now is $themeName");
             die();
 
         }
@@ -48,19 +54,29 @@
          */
         private function prepare($theme_to_switch)
         {
+
             $current = OWPactConfig::getCurrentDistVal();
 
             if($current == $theme_to_switch) {
-                Console::log("You are already on theme $theme_to_switch",'brown');
+                $this->warning("You are already on theme $theme_to_switch");
                 die();
             }
 
-            if( ! isset(OWPactConfig::$project_config->{$theme_to_switch}) ){
+            $listProject = OWPactConfig::getListProjectAvailable();
+
+            if( ! in_array($theme_to_switch,$listProject) || !count($listProject)){
 
                 $this->error("Theme $theme_to_switch is not found in your project.".
                              "json please declare your theme into your project.".
                              "json file as 'themename':'path_to_theme'"
                 );
+
+                if($listProject){
+                    $list = OWPactConfig::getListProjectAvailable();
+                    $this->success("Here is list of your available project:");
+                    $this->warning("==> ".(join("\n ==> " , $list)));
+                }
+
 
                 die();
 
@@ -71,6 +87,7 @@
             }
 
             return false;
+
         }
 
 
