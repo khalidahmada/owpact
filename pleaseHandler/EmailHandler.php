@@ -19,6 +19,7 @@
                 $this->Execute($argv[3],$argv[4]);
             }else{
                 $this->error("Please enter email name and email template name");
+                die();
             }
         }
 

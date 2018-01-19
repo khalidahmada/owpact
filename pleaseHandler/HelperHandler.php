@@ -18,6 +18,7 @@
                 $this->Execute($this->argv[3]);
             }else{
                 $this->error("Please enter Helper Name");
+                die();
             }
         }
 

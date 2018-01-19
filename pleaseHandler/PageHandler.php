@@ -44,6 +44,7 @@
 
             }else{
                 $this->error("Please enter the \"template name\" and the file name (file name is option )");
+                die();
             }
         }
 

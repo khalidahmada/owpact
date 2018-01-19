@@ -17,6 +17,7 @@
                 $this->Execute($this->argv[3]);
             }else{
                 $this->error("Please Enter name of your extra class");
+                die();
             }
         }
 

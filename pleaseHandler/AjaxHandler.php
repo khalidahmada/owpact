@@ -21,6 +21,7 @@
                 $this->Execute($this->argv[3],$this->argv[4]);
             }else{
                 $this->error("Please Enter two params AjaxController Name and the action name");
+                die();
             }
         }
 

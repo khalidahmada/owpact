@@ -18,6 +18,7 @@
                 $this->Execute($this->argv[3],$this->argv[4]);
             }else{
                 $this->error("Please enter two params hook name and the function callback name");
+                die();
             }
         }
 

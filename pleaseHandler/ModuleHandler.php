@@ -21,6 +21,7 @@
                 $this->Execute($this->argv[3]);
             }else{
                 $this->error("Please enter your module name");
+                die();
             }
         }
 

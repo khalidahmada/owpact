@@ -41,6 +41,7 @@
 
             }else{
                 $this->error("Please enter your function file name");
+                die();
             }
         }
 

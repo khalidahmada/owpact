@@ -24,6 +24,7 @@
 
             }else{
                 $this->error("Please Enter two params path example /foo/tuto and the handler name");
+                die();
             }
         }
 

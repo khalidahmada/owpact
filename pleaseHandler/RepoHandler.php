@@ -23,6 +23,7 @@
                 $this->Execute($this->argv[3],$post_type);
             }else{
                 $this->error("Please enter repo name");
+                die();
             }
         }
 

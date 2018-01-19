@@ -24,6 +24,7 @@
 
             }else{
                 $this->error("Please Enter the name of trait");
+                die();
             }
         }
 
