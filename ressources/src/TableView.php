@@ -63,7 +63,7 @@
                 /*$1%s*/
                 $this->_args['singular'],
                 /*$2%s*/
-                $item['ID']
+                $item['id']
             );
         }
 
@@ -294,7 +294,7 @@
                         foreach($this->fields as $keyval => $label){
 
                             if($keyval == 'date'){
-                                $ar_entries[$keyval]  = date_i18n('d F Y H:i', strtotime($item->updated));
+                                $ar_entries[$keyval]  = date_i18n('d F Y H:i', strtotime($item->{$keyval}));
                             }else{
                                 $ar_entries[$keyval] = $item->{$keyval};
                             }
