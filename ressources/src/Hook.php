@@ -1,6 +1,4 @@
 <?php
-    namespace Hooks;
-
 
     function __CALLBACK_NAME(){
         // Your Logic Here
