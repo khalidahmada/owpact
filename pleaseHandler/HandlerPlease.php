@@ -76,5 +76,38 @@
             return in_array($arg,$this->trigger_childes);
         }
 
+        /*
+         * Parse arg to extract dir_name & file_name
+         * then create dir
+         */
+        protected function getFileAndDirNameAndPrepareDirectory($arg,$folderParent){
+
+            $baseDir = dirname($arg);
+            $nameFile = basename($arg);
+
+
+
+            if($baseDir && $baseDir!= '.' && $baseDir!= '/'){
+                CreteElement::CreateDirectory("$folderParent/".$baseDir);
+            }else{
+                $baseDir = '';
+            }
+
+            return array($baseDir,$nameFile);
+
+        }
+
+        protected function getFullName($baseDir,$filename,$folder){
+
+
+            if($baseDir && !empty($baseDir)){
+                $file_dist = "$folder/$baseDir/$filename.php";
+            }else{
+                $file_dist = "$folder/$filename.php";
+            }
+
+            return $file_dist;
+        }
+
 
     }

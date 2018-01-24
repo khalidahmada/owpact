@@ -1738,8 +1738,13 @@
     {
         $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : false;
 
-        if($host){
-            if(strpos($host,'.local')) return true;
+        $exp = explode('.',$host);
+
+        if($exp){
+            $exp = $exp[count($exp)-1];
+        }
+        if($exp){
+            if(in_array($exp,array('dev','local','test'))) return true;
         }
 
         return false;
