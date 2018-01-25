@@ -18,18 +18,30 @@
             if(!$this->match) return;
 
             if(isset($this->argv[3]) && isset($this->argv[4])){
-                $this->Execute($this->argv[3],$this->argv[4]);
+
+                $parse =  $this->getFileAndDirNameAndPrepareDirectory($this->argv[4],'Ajax');
+                $this->Execute($this->argv[3],$parse[1],$parse[0]);
+
             }else{
-                $this->error("Please Enter two params AjaxController Name and the action name");
+                $this->error("Please Enter two params the action name and AjaxController name");
                 die();
             }
         }
 
-        private function Execute($file_name, $action_name)
+        private function Execute($action_name,$file_name,$baseDir)
         {
-            $create = new CreteElement("Ajax/$file_name.php",array("_NAME_" => $file_name,'_ACTION_'=>$action_name),'Ajax',__DIR__.'/../ressources/src/Ajax.php','RegisterAjax');
+
+            $replacements = array(
+                                    "_NAME_" => $file_name,
+                                    '_ACTION_'=>$action_name
+            );
+
+            $file_dist = $this->getFullName($baseDir,$file_name,'Ajax');
+
+            $create = new CreteElement($file_dist,$replacements,'Ajax',__DIR__.'/../ressources/src/Ajax.php','RegisterAjax');
             $create->CreateItem();
             die();
+
 
         }
 
@@ -40,7 +52,7 @@
         {
             return array(
                 'trigger' => 'ajax',
-                'demo' => "php owp make ajax YourAjaxControllerName ajax_action_name ",
+                'demo' => "php owp make ajax ajax_action_name YourAjaxControllerName",
                 'doc' => "Create Ajax file to handler ajax request the action name will be the action value on Wordpress ajax requests",
             );
         }

@@ -17,20 +17,26 @@
             if(!$this->match) return;
 
             if(isset($this->argv[3])){
-                $this->PrepareForSetUpModules($this->argv[3]);
-                $this->Execute($this->argv[3]);
+
+                $parse =  $this->getFileAndDirNameAndPrepareDirectory($this->argv[3],'Modules');
+                $this->Execute($parse[1],$parse[0]);
+
             }else{
+
                 $this->error("Please enter your module name");
                 die();
+
             }
         }
 
-        private function Execute($file_name)
+        private function Execute($file_name,$baseDir)
         {
             $replaces = array("_NAME_" => $file_name);
 
+            $file_dist = $this->getFullName($baseDir,$file_name,'Modules');
+
             $create = new CreteElement(
-                                        "Modules/$file_name/$file_name.php",
+                                        $file_dist,
                                         $replaces,'Module',__DIR__.'/../ressources/src/Module.php',
                                         'RegisterModules'
             );
@@ -39,14 +45,6 @@
             die();
 
         }
-
-        private function PrepareForSetUpModules($nameModule)
-        {
-            CreteElement::CreateDirectory('Modules');
-            CreteElement::CreateDirectory('Modules/'.$nameModule);
-
-        }
-
 
         /*
          * get The Documentation

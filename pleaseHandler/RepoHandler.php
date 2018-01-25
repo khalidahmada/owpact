@@ -20,14 +20,17 @@
                 if(isset($this->argv[4])){
                     $post_type = $this->argv[4];
                 }
-                $this->Execute($this->argv[3],$post_type);
+
+                $parse =  $this->getFileAndDirNameAndPrepareDirectory($this->argv[3],'Repo');
+                $this->Execute($parse[1],$post_type,$parse[0]);
+
             }else{
                 $this->error("Please enter repo name");
                 die();
             }
         }
 
-        private function Execute($RepoName,$post_type)
+        private function Execute($RepoName,$post_type,$baseDir)
         {
             $replaces = array("__NAME__" => $RepoName);
 
@@ -35,8 +38,9 @@
                 $replaces['_POST_TYPE'] = $post_type;
             }
 
+            $file_dist = $this->getFullName($baseDir,$RepoName,'Repo');
 
-            $create = new CreteElement("Repo/$RepoName.php",$replaces,'Repo',__DIR__.'/../ressources/src/Repo.php','RegisterRepo');
+            $create = new CreteElement($file_dist,$replaces,'Repo',__DIR__.'/../ressources/src/Repo.php','RegisterRepo');
             $create->CreateItem();
             die();
         }
