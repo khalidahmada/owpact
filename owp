@@ -18,6 +18,7 @@
     use pleaseHandler\SwitchProjectHandler;
     use pleaseHandler\TableViewHandler;
     use pleaseHandler\TraitHandler;
+    use pleaseHandler\UpdateBaseHelperHandler;
 
 
     class OWPactPlease
@@ -81,6 +82,7 @@
             $this->RegisterModule('pleaseHandler/PageHandler');
             $this->RegisterModule('pleaseHandler/Extras/SwitchProjectHandler');
             $this->RegisterModule('pleaseHandler/AdminGroupHandler');
+            $this->RegisterModule('pleaseHandler/UpdateBaseHelperHandler');
 
         }
 
@@ -154,6 +156,7 @@
             new PageHandler($argv);
             new SwitchProjectHandler($argv);
             new AdminGroupHandler($argv);
+            new UpdateBaseHelperHandler($argv);
 
         }
 
@@ -201,6 +204,7 @@
                 PageHandler::getDoc(),
                 SwitchProjectHandler::getDoc(),
                 AdminGroupHandler::getDoc(),
+                UpdateBaseHelperHandler::getDoc(),
             );
 
         }

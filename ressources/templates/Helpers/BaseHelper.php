@@ -1798,6 +1798,10 @@
         pre_p($var,$die);
     }
 
+    function dd($var){
+        pre_p($var,true);
+    }
+
 
     function sprintf_array($format, $arr)
     {
