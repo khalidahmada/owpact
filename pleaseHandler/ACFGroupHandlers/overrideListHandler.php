@@ -1,0 +1,76 @@
+<?php
+    namespace pleaseHandler\AdminChildHandlers;
+
+
+    use Console;
+    use pleaseHandler\ChildHandler;
+    use pleaseHandler\CreteElement;
+    use pleaseHandler\HandlerPlease;
+
+    class overrideListHandler extends ChildHandler{
+
+
+        public function __construct($argv)
+        {
+
+            parent::__construct('override-list',$argv,'');
+
+            $this->isTrigger();
+
+            $this->Handler();
+        }
+
+        /*
+         * is Trigger
+         */
+        protected function isTrigger()
+        {
+            return $this->argv[2] == $this->trigger;
+        }
+
+        /*
+         * Handler
+         */
+        protected function Handler()
+        {
+            if(!$this->isTrigger()) return;
+
+            if(isset($this->argv[2])){
+                $this->Execute();
+                die();
+            }else{
+                $this->error("Please Enter your test name");
+            }
+        }
+
+        /*
+         * The logic to Execute this
+         */
+        protected function Execute()
+        {
+           // CreteElement::CreateMethodIntoRegistry('stawtaw');
+
+
+            $this->success('Is Done');
+            die();
+
+        }
+
+        /*
+         * get The Documentation
+         */
+        public static function  getDoc()
+        {
+            return array(
+                'trigger' => 'test',
+                'demo' => "php owp acf test",
+                'doc' => "For test",
+            );
+        }
+
+
+
+
+
+
+    }

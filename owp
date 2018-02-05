@@ -2,6 +2,7 @@
 <?php
 
 
+    use pleaseHandler\ACFGroupHandler;
     use pleaseHandler\AdminGroupHandler;
     use pleaseHandler\AjaxHandler;
     use pleaseHandler\EmailHandler;
@@ -84,6 +85,7 @@
             $this->RegisterModule('pleaseHandler/PageHandler');
             $this->RegisterModule('pleaseHandler/Extras/SwitchProjectHandler');
             $this->RegisterModule('pleaseHandler/AdminGroupHandler');
+            $this->RegisterModule('pleaseHandler/ACFGroupHandler');
             $this->RegisterModule('pleaseHandler/UpdateBaseHelperHandler');
 
         }
@@ -158,6 +160,7 @@
             new PageHandler($argv);
             new SwitchProjectHandler($argv);
             new AdminGroupHandler($argv);
+            new ACFGroupHandler($argv);
             new UpdateBaseHelperHandler($argv);
             new FiltersHandler($argv);
 
@@ -208,6 +211,7 @@
                 PageHandler::getDoc(),
                 SwitchProjectHandler::getDoc(),
                 AdminGroupHandler::getDoc(),
+                ACFGroupHandler::getDoc(),
                 UpdateBaseHelperHandler::getDoc(),
             );
 
