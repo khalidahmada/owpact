@@ -672,26 +672,33 @@
 
 
 
-    function registerPostType($name, $title ,$icon, $sports = false){
+    function registerPostType($name, $title ,$icon, $sports = false,$capability_type=false){
 
         if($sports == false){
             $sports = array( 'title','editor', 'trackbacks', 'custom-fields', 'thumbnail', 'author', 'page-attributes');
         }
 
-        register_post_type($name, array(
+        $conf = array(
             'label' => $title,
             'description' => $title,
             'public' => true,
             'show_ui' => true,
             'show_in_menu' => true,
-            'capability_type' => 'post',
+            //'capability_type' => 'post',
             'menu_icon' => $icon,
             'map_meta_cap' => true,
             'hierarchical' => false,
             'rewrite' => array('slug' => $name, 'with_front' => true),
             'query_var' => true,
             'supports' => $sports
-        ));
+        );
+
+        if($capability_type){
+            $conf['capability_type'] = $capability_type;
+            $conf['map_meta_cap'] = true;
+        }
+
+        register_post_type($name,$conf );
 
 
     }

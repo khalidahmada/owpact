@@ -84,12 +84,18 @@
                 // Replate With Call Module
                 $str_entry = 'function '.$this->RegistrayEntry.'(){';
 
-                $newSaved = $str_entry."\n \t \t \t".'$this->RegisterModule("'.$this->fileName.'");';
-                $content = str_replace($str_entry ,$newSaved,$content );
+                $replacementHandler='$this->RegisterModule("'.$this->fileName.'");';
 
+                if(!strpos($content,$replacementHandler)){
+                    $newSaved = $str_entry."\n \t \t \t".$replacementHandler;
+                    $content = str_replace($str_entry ,$newSaved,$content );
+                    return file_put_contents($Registry_file,$content);
+                }else{
+                    // already exist
+                    // but escape to recall fn
+                    return true;
+                }
 
-
-                return file_put_contents($Registry_file,$content);
             }
 
             return false;
@@ -158,7 +164,6 @@
 
 
             if($content){
-                echo "file exist";
                 if(!strpos($content,$formMethod)){
 
                     if(strpos($content,$str_entry)){

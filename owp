@@ -6,6 +6,7 @@
     use pleaseHandler\AjaxHandler;
     use pleaseHandler\EmailHandler;
     use pleaseHandler\ExtraHandler;
+    use pleaseHandler\FiltersHandler;
     use pleaseHandler\FunctionsHandler;
     use pleaseHandler\HelperHandler;
     use pleaseHandler\HookHandler;
@@ -70,6 +71,7 @@
             $this->RegisterModule('pleaseHandler/AjaxHandler');
             $this->RegisterModule('pleaseHandler/EmailHandler');
             $this->RegisterModule('pleaseHandler/HookHandler');
+            $this->RegisterModule('pleaseHandler/FiltersHandler');
             $this->RegisterModule('pleaseHandler/RepoHandler');
             $this->RegisterModule('pleaseHandler/HelperHandler');
             $this->RegisterModule('pleaseHandler/ExtraHandler');
@@ -157,6 +159,7 @@
             new SwitchProjectHandler($argv);
             new AdminGroupHandler($argv);
             new UpdateBaseHelperHandler($argv);
+            new FiltersHandler($argv);
 
         }
 
@@ -194,6 +197,7 @@
                 EmailHandler::getDoc(),
                 HelperHandler::getDoc(),
                 HookHandler::getDoc(),
+                FiltersHandler::getDoc(),
                 ExtraHandler::getDoc(),
                 RouteHandler::getDoc(),
                 TraitHandler::getDoc(),
