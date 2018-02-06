@@ -11,8 +11,10 @@
             $dir = __DIR__ . "/../ressources/$path_to_directory";
 
             if(!is_dir($dir)) {
-                copy_dir($dir, OWPactConfig::getOWPDir() . '/' . $dist);
+                return copy_dir($dir, OWPactConfig::getOWPDir() . '/' . $dist);
             }
+
+            return false;
 
         }
 
@@ -56,6 +58,36 @@
             $nameFile = basename($file);
 
             return $nameFile;
+        }
+
+
+        /*
+         * Copy file from to
+         * OWP current Project
+         */
+        protected function copyFileToDir($file,$dist){
+
+           $source = __DIR__ . "/../ressources/$file";
+
+           $dist =  OWPactConfig::getOWPDir() . '/'.$dist ;
+
+            if(!file_exists ( $dist )){
+                return copy($source,$dist);
+            }
+
+            return false;
+
+
+        }
+
+        /*
+         * Page Create Folder
+         * Into Dir
+         */
+        protected  function CreateFolderIntoDir($dir_name)
+        {
+            $dir =  OWPactConfig::getDirectory().$dir_name;
+            $this->createDir($dir);
         }
 
     }

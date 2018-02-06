@@ -130,6 +130,24 @@
 
         }
 
+        public static function RegisterModuleIntoRegisterBase($file_name){
+
+            $Registry_file = \OWPactConfig::getRegistryPath();
+
+            $content = file_get_contents($Registry_file );
+            $AppendString = '$this->RegisterModule(\''.$file_name.'\');';
+
+            if($content){
+                if(!strpos($content , $AppendString)){
+                    // Replace With Call Module
+                    $str_entry = 'function RegisterBases(){';
+                    $newSaved = $str_entry."\n \t \t \t".$AppendString;
+                    $content = str_replace($str_entry ,$newSaved,$content );
+                    return file_put_contents($Registry_file,$content);
+                }
+            }
+        }
+
         public static function CreateDirectory($dir_name)
         {
             $dir_name = \OWPactConfig::getOWPDir().'/'.$dir_name;

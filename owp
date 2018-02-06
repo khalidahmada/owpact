@@ -11,6 +11,7 @@
     use pleaseHandler\FunctionsHandler;
     use pleaseHandler\HelperHandler;
     use pleaseHandler\HookHandler;
+    use pleaseHandler\LayoutHandler;
     use pleaseHandler\ModuleHandler;
     use pleaseHandler\PageHandler;
     use pleaseHandler\PublishHandler;
@@ -76,6 +77,7 @@
             $this->RegisterModule('pleaseHandler/RepoHandler');
             $this->RegisterModule('pleaseHandler/HelperHandler');
             $this->RegisterModule('pleaseHandler/ExtraHandler');
+            $this->RegisterModule('pleaseHandler/LayoutHandler');
             $this->RegisterModule('pleaseHandler/RouteHandler');
             $this->RegisterModule('pleaseHandler/TraitHandler');
             $this->RegisterModule('pleaseHandler/TableViewHandler');
@@ -151,6 +153,7 @@
             new HelperHandler($argv);
             new HookHandler($argv);
             new ExtraHandler($argv);
+            new LayoutHandler($argv);
             new RouteHandler($argv);
             new TraitHandler($argv);
             new TableViewHandler($argv);
@@ -213,6 +216,7 @@
                 AdminGroupHandler::getDoc(),
                 ACFGroupHandler::getDoc(),
                 UpdateBaseHelperHandler::getDoc(),
+                LayoutHandler::getDoc(),
             );
 
         }
