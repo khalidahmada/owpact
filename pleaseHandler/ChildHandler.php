@@ -5,7 +5,7 @@
     abstract class ChildHandler extends HandlerPlease{
 
         abstract protected function isTrigger();
-        abstract protected function Execute();
+        //abstract protected function Execute($args);
         /**
          * HandlerGroup constructor.
          */

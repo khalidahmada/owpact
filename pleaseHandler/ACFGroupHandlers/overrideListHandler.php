@@ -9,6 +9,8 @@
 
     class overrideListHandler extends ChildHandler{
 
+        protected $FnName   = 'AcfOverrides';
+        protected $PathDist = 'Filters/ACF/Overrides';
 
         public function __construct($argv)
         {
@@ -35,23 +37,36 @@
         {
             if(!$this->isTrigger()) return;
 
-            if(isset($this->argv[2])){
-                $this->Execute();
+            if(isset($this->argv[3])){
+
+                $this->createFilterDirectory();
+                $parse =  $this->getFileAndDirNameAndPrepareDirectory($this->argv[3],$this->PathDist);
+                $this->Execute($parse[1],$parse[0]);
                 die();
+
             }else{
-                $this->error("Please Enter your test name");
+                $this->error("Please enter the acf field name");
             }
         }
 
         /*
          * The logic to Execute this
          */
-        protected function Execute()
+        protected function Execute($file_name,$path)
         {
-           // CreteElement::CreateMethodIntoRegistry('stawtaw');
 
+            $replacements = array(
+                'ACF_LIST_NAME'=>$file_name
+            );
 
-            $this->success('Is Done');
+            $tpl = __DIR__.'/../../ressources/src/acf/OverrideList.php';
+
+            CreteElement::CreateMethodIntoRegistry($this->FnName);
+
+            $file_dist = $this->getFullName($path,$file_name.'OverrideList',$this->PathDist);
+
+            $create = new CreteElement($file_dist,$replacements,'Override',$tpl,$this->FnName);
+            $create->CreateItem();
             die();
 
         }
@@ -62,15 +77,16 @@
         public static function  getDoc()
         {
             return array(
-                'trigger' => 'test',
-                'demo' => "php owp acf test",
-                'doc' => "For test",
+                'trigger' => 'override-list',
+                'demo' => "php owp acf override-list",
+                'doc' => "Override select list of acf field by your own data",
             );
         }
 
-
-
-
+        private function createFilterDirectory()
+        {
+            CreteElement::CreateDirectory($this->PathDist);
+        }
 
 
     }
