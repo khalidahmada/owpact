@@ -24,7 +24,7 @@
 
         /**
          * Generate meta query object
-         * @param $arra
+         * @param $array
          * @param string $operator
          * @return array
          */
