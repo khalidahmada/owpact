@@ -1815,6 +1815,41 @@
         return call_user_func_array('sprintf', array_merge((array)$format, $arr));
     }
 
+    /**
+     * Return attribute class with classes given
+     * @param array $classes
+     * @param $echo
+     * @return string or void
+     */
+    function classes_attribute(array $classes,$echo = true){
+
+        $class_str =  'class="' . join(' ',$classes). '"';
+        if($echo) echo $class_str;
+        return $class_str;
+
+    }
+
+
+    /**
+     * Return Array of three items $src,$srcset and sizes
+     *
+     * @param $image_id
+     * @param bool $post_id
+     * @param string $size
+     * @return array|bool
+     */
+    function MediaWidthSrcSet($image_id, $post_id=false, $size=''){
+
+        if(!$image_id && $post_id) $image_id = get_post_thumbnail_id($post_id);
+        $src = getMediaT('',$image_id);
+        if(!$src) return false;
+        $srcset = wp_get_attachment_image_srcset($image_id,$size);
+        $sizes = wp_get_attachment_image_sizes($image_id,$size);
+
+        return array($src,$srcset,$sizes);
+    }
+
+
 
 
 

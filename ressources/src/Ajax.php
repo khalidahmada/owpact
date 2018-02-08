@@ -20,7 +20,7 @@
 
 
             // Your Logic Here
-            $data = [];
+            $data = array();
 
             $this->resp($data);
 
