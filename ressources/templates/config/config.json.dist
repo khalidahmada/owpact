@@ -3,8 +3,8 @@
     "smtp" : {
       "provider":"mailtrap.io",
       "port" :25,
-      "username" :"90a1499ee75be7",
-      "password" :"b447b3db61a220"
+      "username" :"",
+      "password" :""
     }
   }
 }
