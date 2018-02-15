@@ -28,6 +28,7 @@
                     // Call Library Core
                     $this->RegisterLibrary();
 
+
                     $action_name = $this->argv[4];
 
                     if($action_name == '@') $action_name = $this->argv[3];

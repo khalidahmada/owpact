@@ -9,9 +9,10 @@
         protected function CopyDirFromTemplate($path_to_directory,$dist){
 
             $dir = __DIR__ . "/../ressources/$path_to_directory";
+            $idst  =OWPactConfig::getOWPDir() . '/' . $dist;
 
             if(!is_dir($dir)) {
-                return copy_dir($dir, OWPactConfig::getOWPDir() . '/' . $dist);
+                return copy_dir($dir, $idst);
             }
 
             return false;
@@ -23,7 +24,7 @@
          * Add to Library /owp/libs
          */
         protected function AddLibrary($libraryName,$entry='plug.php'){
-            $this->CopyDirFromTemplate("extra/$libraryName","libs/$libraryName");
+            $this->CopyDirFromTemplate("extra/$libraryName","libs");
             $this->RegisterLib($libraryName."/$entry");
         }
 
