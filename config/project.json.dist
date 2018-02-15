@@ -5,5 +5,8 @@
   "current_dist" : "test",
   "dir_inc" : "inc/",
   "dir_owp" : "inc/owp",
-  "pages_dist":"pages"
+  "pages_dist":"pages",
+  "tpl_config":{
+    "file_source":"tpl.json"
+  }
 }

@@ -193,6 +193,42 @@
             return static::getOWPDir() . '/RegistryOwpact.php';
         }
 
+        /*
+         * Get the Tpl Config
+         */
+        public static function getTplConfig()
+        {
+
+            if(isset(static::$project_config->tpl_config)){
+
+                $tpl_file = static::$project_config->tpl_config;
+
+                if( isset($tpl_file->file_source) ){
+
+                    $tpl_file_source = $tpl_file->file_source;
+
+                    if($tpl_file_source){
+                        $tpl_file_source = static::getOWPDir() . '/' . $tpl_file_source;
+
+                        if( is_file($tpl_file_source) ){
+                            $tpl_content = file_get_contents($tpl_file_source);
+                            return $tpl_content = json_decode($tpl_content);
+                        }
+                    }
+
+                }
+            }
+
+            return false;
+        }
+
+
+        public static function getPathFromOwp($file){
+            return static::getOWPDir() . '/'. $file;
+        }
+
+
+
 
 
     }

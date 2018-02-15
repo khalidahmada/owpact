@@ -20,6 +20,7 @@
     use pleaseHandler\RouteHandler;
     use pleaseHandler\SwitchProjectHandler;
     use pleaseHandler\TableViewHandler;
+    use pleaseHandler\TplHandler;
     use pleaseHandler\TraitHandler;
     use pleaseHandler\UpdateBaseHelperHandler;
 
@@ -89,6 +90,7 @@
             $this->RegisterModule('pleaseHandler/AdminGroupHandler');
             $this->RegisterModule('pleaseHandler/ACFGroupHandler');
             $this->RegisterModule('pleaseHandler/UpdateBaseHelperHandler');
+            $this->RegisterModule('pleaseHandler/TplHandler');
 
         }
 
@@ -166,6 +168,7 @@
             new ACFGroupHandler($argv);
             new UpdateBaseHelperHandler($argv);
             new FiltersHandler($argv);
+            new TplHandler($argv);
 
         }
 
@@ -196,6 +199,7 @@
          */
         private function RenderDoc()
         {
+
             $this->handlers=array(
 
                 AjaxHandler::getDoc(),
@@ -217,6 +221,8 @@
                 ACFGroupHandler::getDoc(),
                 UpdateBaseHelperHandler::getDoc(),
                 LayoutHandler::getDoc(),
+                TplHandler::getDoc(),
+
             );
 
         }
