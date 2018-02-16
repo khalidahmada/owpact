@@ -1649,9 +1649,13 @@
     }
 
 
-
-
-    function SortArrayByKey(&$array,$orderby,$sort=SORT_ASC){
+    /**
+     * Sort Array By given key
+     * @param $array
+     * @param $orderby
+     * @param int $sort
+     */
+    function SortArrayByKey(&$array, $orderby, $sort=SORT_ASC){
 
         $sortArray = array();
 
@@ -1723,6 +1727,10 @@
         return $path;
     }
 
+    /**
+     * Auto filter p
+     * @param bool $status
+     */
     function d_auto_p($status=true){
         if($status){
             remove_filter('the_content', 'wpautop' );
@@ -1731,16 +1739,32 @@
         }
     }
 
+
+    /**
+     * Replace hash tag with given tag
+     * @param $text
+     * @param string $tag
+     * @return mixed
+     */
     function ReplaceHashTags($text, $tag = 'strong'){
         return preg_replace('/(^|\s)#(\w*[a-zA-Z_]+\w*)/', '\1<'.$tag.'>#\2</'.$tag.'>', $text);
     }
 
+    /**
+     * Replace Hash tags to Link
+     * @param $text
+     * @return mixed
+     */
     function ReplaceHashTagToLink($text)
     {
         return preg_replace('/(^|\s)#(\w*[a-zA-Z_]+\w*)/', '\1#<a href="http://twitter.com/search?q=%23\2">\2</a>', $text);
     }
 
 
+    /**
+     * If server is on Local
+     * @return bool
+     */
     function isLocal()
     {
         $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : false;
@@ -1757,16 +1781,25 @@
         return false;
     }
 
+
+    /**
+     * Convert Number xxxxx to xx xx
+     * @param $tel
+     * @return string
+     */
     function ParseNumbers($tel){
         $words=str_split($tel,2);
         return join(' ',$words);
     }
 
 
-    /*
-     * get_field
+    /**
+     * get ACF field value
+     * @param $name
+     * @param bool $id
+     * @return mixed
      */
-    function f($name,$id = false){
+    function f($name, $id = false){
 
         if(!$id){
             $id = get_the_id();
@@ -1775,7 +1808,14 @@
 
     }
 
-    function ops($field_id, $echo=false,$key="option"){
+    /**
+     * get Option Field
+     * @param $field_id
+     * @param bool $echo
+     * @param string $key
+     * @return mixed
+     */
+    function ops($field_id, $echo=false, $key="option"){
         if( $echo ){
             the_field($field_id,$key);
         }else{
@@ -1784,7 +1824,14 @@
     }
 
 
-    function eops($field_id, $echo=true,$key="option"){
+    /**
+     * Ech ACF option field
+     * @param $field_id
+     * @param bool $echo
+     * @param string $key
+     * @return mixed
+     */
+    function eops($field_id, $echo=true, $key="option"){
         if( $echo ){
             the_field($field_id,$key);
         }else{
@@ -1793,7 +1840,13 @@
     }
 
 
-    function HasTemplate($post_id,$template_name){
+    /**
+     * is post has template
+     * @param $post_id
+     * @param $template_name
+     * @return bool
+     */
+    function HasTemplate($post_id, $template_name){
         $template = get_post_meta($post_id,'_wp_page_template');
 
         if(!$template) return false;
@@ -1801,10 +1854,19 @@
         return $template[0] == $template_name;
     }
 
+    /**
+     * Log var_dump with pre tag
+     * @param $var
+     * @param bool $die
+     */
     function pp($var, $die=false){
         pre_p($var,$die);
     }
 
+    /**
+     * var_dump with pre tag and die
+     * @param $var
+     */
     function dd($var){
         pre_p($var,true);
     }
@@ -1848,7 +1910,6 @@
 
         return array($src,$srcset,$sizes);
     }
-
 
 
 
