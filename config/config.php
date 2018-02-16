@@ -203,20 +203,28 @@
 
                 $tpl_file = static::$project_config->tpl_config;
 
-                if( isset($tpl_file->file_source) ){
+                $current_dist = static::$project_config->{'current_dist'};
 
-                    $tpl_file_source = $tpl_file->file_source;
+                if($current_dist){
 
-                    if($tpl_file_source){
-                        $tpl_file_source = static::getOWPDir() . '/' . $tpl_file_source;
+                    if( isset($tpl_file->{$current_dist}) ){
 
-                        if( is_file($tpl_file_source) ){
-                            $tpl_content = file_get_contents($tpl_file_source);
-                            return $tpl_content = json_decode($tpl_content);
+                        $tpl_file_source = $tpl_file->{$current_dist};
+
+                        if($tpl_file_source){
+
+                            $tpl_file_source = static::getOWPDir() . '/' . $tpl_file_source;
+
+                            if( is_file($tpl_file_source) ){
+                                $tpl_content = file_get_contents($tpl_file_source);
+                                return $tpl_content = json_decode($tpl_content);
+                            }
                         }
-                    }
 
+                    }
                 }
+
+
             }
 
             return false;

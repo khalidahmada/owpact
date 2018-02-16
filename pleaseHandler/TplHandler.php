@@ -118,7 +118,7 @@
          */
         private function ObjectTplIstValid($tpl_object)
         {
-            if (isset($tpl_object->src) && isset($tpl_object->dist) && isset($tpl_object->fn)) {
+            if (isset($tpl_object->src) && isset($tpl_object->dist)) {
                 return true;
             } else {
                 return false;
@@ -131,7 +131,11 @@
             CreteElement::CreateDirectory($tpl_object->dist);
             $parse=$this->getFileAndDirNameAndPrepareDirectory($this->argv[4], $tpl_object->dist);
 
-            CreteElement::CreateMethodIntoRegistry($tpl_object->fn);
+            // if fn is created
+            if(isset($tpl_object->fn) && !empty($tpl_object->fn) && $tpl_object->fn){
+                CreteElement::CreateMethodIntoRegistry($tpl_object->fn);
+            }
+
 
             $this->Execute($this->argv, $parse[1], $parse[0], $tpl_object, $file_src);
         }
@@ -161,7 +165,7 @@
 
             $file_dist=$this->getFullName($baseDir, $fnc_name, $obj->dist);
 
-            $create=new CreteElement($file_dist, $replacements, $obj->key, $file_src, $obj->fn);
+            $create=new CreteElement($file_dist, $replacements, $obj->key, $file_src, false);
             $create->CreateItem();
             die();
         }
