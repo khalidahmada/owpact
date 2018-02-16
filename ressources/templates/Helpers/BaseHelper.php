@@ -672,10 +672,10 @@
 
 
 
-    function registerPostType($name, $title ,$icon, $sports = false,$capability_type=false){
+    function registerPostType($name, $title ,$icon, $supports = false,$capability_type=false){
 
-        if($sports == false){
-            $sports = array( 'title','editor', 'trackbacks', 'custom-fields', 'thumbnail', 'author', 'page-attributes');
+        if($supports == false){
+            $supports = array( 'title','editor', 'trackbacks', 'custom-fields', 'thumbnail', 'author', 'page-attributes');
         }
 
         $conf = array(
@@ -690,7 +690,7 @@
             'hierarchical' => false,
             'rewrite' => array('slug' => $name, 'with_front' => true),
             'query_var' => true,
-            'supports' => $sports
+            'supports' => $supports
         );
 
         if($capability_type){
