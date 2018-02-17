@@ -162,8 +162,9 @@
 
             }
 
+            $ext = pathinfo($obj->src, PATHINFO_EXTENSION);
 
-            $file_dist=$this->getFullName($baseDir, $fnc_name, $obj->dist);
+            $file_dist=$this->getFullName($baseDir, $fnc_name, $obj->dist,$ext);
 
             $create=new CreteElement($file_dist, $replacements, $obj->key, $file_src, false);
             $create->CreateItem();

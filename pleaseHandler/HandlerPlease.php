@@ -97,11 +97,11 @@
 
         }
 
-        protected function getFullName($baseDir,$filename,$folder){
+        protected function getFullName($baseDir,$filename,$folder,$ext='php'){
 
 
             if($baseDir && !empty($baseDir)){
-                $file_dist = "$folder/$baseDir/$filename.php";
+                $file_dist = "$folder/$baseDir/$filename.$ext";
             }else{
                 $file_dist = "$folder/$filename.php";
             }
