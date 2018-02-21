@@ -18,8 +18,9 @@
 
                 // Call Library Core
                 $this->CreateFolderTraits();
+                $parse =  $this->getFileAndDirNameAndPrepareDirectory($this->argv[3],'Traits');
 
-                $this->Execute($this->argv[3]);
+                $this->Execute($parse[1],$parse[0]);
 
 
             }else{
@@ -28,9 +29,12 @@
             }
         }
 
-        private function Execute($TraitName)
+        private function Execute($TraitName,$baseDir)
         {
-            $create = new CreteElement("Traits/$TraitName.php",array("_NAME_" => $TraitName),'trait',__DIR__.'/../ressources/src/Trait.php','RegisterTraits');
+            $replacements = array("_NAME_" => $TraitName);
+
+            $file_dist = $this->getFullName($baseDir,$TraitName,'Traits');
+            $create = new CreteElement($file_dist,$replacements,'trait',__DIR__.'/../ressources/src/Trait.php','RegisterTraits');
             $create->CreateItem();
             die();
 
