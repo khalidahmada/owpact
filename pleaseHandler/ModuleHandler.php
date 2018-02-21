@@ -18,6 +18,7 @@
 
             if(isset($this->argv[3])){
 
+                CreteElement::CreateDirectory('Modules');
                 $parse =  $this->getFileAndDirNameAndPrepareDirectory($this->argv[3],'Modules');
                 $this->Execute($parse[1],$parse[0]);
 
