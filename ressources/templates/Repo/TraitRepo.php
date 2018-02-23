@@ -50,4 +50,21 @@
                 'compare' => '=='
             );
         }
+
+        /**
+         * return Object term for tax query
+         * @param $tx_name
+         * @param $val
+         * @param string $field
+         * @param string $operator
+         * @return array
+         */
+        protected static function tx_item($tx_name, $val, $field='term_id', $operator='='){
+            return array(
+                'taxonomy' => $tx_name,
+                'field'    => $field,
+                'terms'    => $val,
+                'operator' => $operator,
+            );
+        }
     }
