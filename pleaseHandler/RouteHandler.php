@@ -2,7 +2,7 @@
     namespace pleaseHandler;
 
     class RouteHandler extends HandlerPlease{
-
+        protected $PathDist = 'Route';
         public function __construct($argv)
         {
             parent::__construct('route',$argv,'make');
@@ -19,7 +19,8 @@
                 // Call Library Core
                 $this->RegisterRouteLibrary();
 
-                $this->Execute($this->argv[3],$this->argv[4]);
+                $parse =  $this->getFileAndDirNameAndPrepareDirectory($this->argv[4],$this->PathDist);
+                $this->Execute($this->argv[3],$parse[1],$parse[0]);
 
 
             }else{
@@ -28,9 +29,10 @@
             }
         }
 
-        private function Execute($path, $HandlerName)
+        private function Execute($path, $HandlerName,$dist)
         {
-            $create = new CreteElement("Route/$HandlerName.php",array("_PATH_" => $path,'_HANDLER_'=>$HandlerName),'route',__DIR__.'/../ressources/src/Route.php','RegisterRoute');
+            $file_dist = $this->getFullName($dist,$HandlerName.'Layout',$this->PathDist);
+            $create = new CreteElement($file_dist,array("_PATH_" => $path,'_HANDLER_'=>$HandlerName),'route',__DIR__.'/../ressources/src/Route.php','RegisterRoute');
             $create->CreateItem();
             die();
 
