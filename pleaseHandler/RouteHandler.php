@@ -31,7 +31,7 @@
 
         private function Execute($path, $HandlerName,$dist)
         {
-            $file_dist = $this->getFullName($dist,$HandlerName.'Layout',$this->PathDist);
+            $file_dist = $this->getFullName($dist,$HandlerName,$this->PathDist);
             $create = new CreteElement($file_dist,array("_PATH_" => $path,'_HANDLER_'=>$HandlerName),'route',__DIR__.'/../ressources/src/Route.php','RegisterRoute');
             $create->CreateItem();
             die();
