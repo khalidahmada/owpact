@@ -131,8 +131,9 @@
             CreteElement::CreateDirectory($tpl_object->dist);
             $parse=$this->getFileAndDirNameAndPrepareDirectory($this->argv[4], $tpl_object->dist);
 
+
             // if fn is created
-            if(isset($tpl_object->fn) && !empty($tpl_object->fn) && $tpl_object->fn){
+            if(isset($tpl_object->fn) && !empty($tpl_object->fn)){
                 CreteElement::CreateMethodIntoRegistry($tpl_object->fn);
             }
 
@@ -165,8 +166,8 @@
             $ext = pathinfo($obj->src, PATHINFO_EXTENSION);
 
             $file_dist=$this->getFullName($baseDir, $fnc_name, $obj->dist,$ext);
-
-            $create=new CreteElement($file_dist, $replacements, $obj->key, $file_src, false);
+            $registry_entry = (isset($obj->fn) && !empty($obj->fn) ? $obj->fn : false);
+            $create=new CreteElement($file_dist, $replacements, $obj->key, $file_src, $registry_entry);
             $create->CreateItem();
             die();
         }
