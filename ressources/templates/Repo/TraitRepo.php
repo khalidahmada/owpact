@@ -67,4 +67,19 @@
                 'operator' => $operator,
             );
         }
+
+        /**
+         * meta query item
+         * @param $key
+         * @param $value
+         * @param string $compare
+         * @return array
+         */
+        protected static function mq_item($key, $value, $compare='='){
+            return array(
+                'key'       => $key,
+                'value'     => $value,
+                'compare'   => $compare
+            );
+        }
     }

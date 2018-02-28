@@ -2007,5 +2007,24 @@ function tpl_render($tpl, $data = array(), $return = false)
 }
 
 
+/**
+ * get Administrator emails
+ * @param bool $all
+ * @return array
+ */
+function get_administrators_email($all=true){
+
+    $admins = get_users('role=Administrator');
+    $emails = array();
+    foreach ($admins as $user) {
+        $email =$user->user_email;
+        if(!$all) return $email;
+        $emails[] = $email;
+    }
+
+    return $emails;
+}
+
+
 
 
