@@ -5,6 +5,7 @@
     use pleaseHandler\ACFGroupHandler;
     use pleaseHandler\AdminGroupHandler;
     use pleaseHandler\AjaxHandler;
+    use pleaseHandler\ControllerHandler;
     use pleaseHandler\EmailHandler;
     use pleaseHandler\ExtraHandler;
     use pleaseHandler\FiltersHandler;
@@ -13,6 +14,7 @@
     use pleaseHandler\HookHandler;
     use pleaseHandler\LayoutHandler;
     use pleaseHandler\ModuleHandler;
+    use pleaseHandler\NotificationHandler;
     use pleaseHandler\PageHandler;
     use pleaseHandler\PublishHandler;
     use pleaseHandler\QueueHandler;
@@ -91,6 +93,8 @@
             $this->RegisterModule('pleaseHandler/ACFGroupHandler');
             $this->RegisterModule('pleaseHandler/UpdateBaseHelperHandler');
             $this->RegisterModule('pleaseHandler/TplHandler');
+            $this->RegisterModule('pleaseHandler/ControllerHandler');
+            $this->RegisterModule('pleaseHandler/NotificationHandler');
 
         }
 
@@ -169,6 +173,8 @@
             new UpdateBaseHelperHandler($argv);
             new FiltersHandler($argv);
             new TplHandler($argv);
+            new ControllerHandler($argv);
+            new NotificationHandler($argv);
 
         }
 
@@ -222,6 +228,8 @@
                 UpdateBaseHelperHandler::getDoc(),
                 LayoutHandler::getDoc(),
                 TplHandler::getDoc(),
+                ControllerHandler::getDoc(),
+                NotificationHandler::getDoc(),
 
             );
 
