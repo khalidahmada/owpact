@@ -2025,6 +2025,40 @@ function get_administrators_email($all=true){
     return $emails;
 }
 
+/**
+ * Get value and label of an acf field
+ * @param $key
+ * @param $post_id
+ * @return array|bool
+ */
+function f_with_label($key, $post_id){
+
+    $value = f($key,$post_id);
+
+    if( $value){
+
+        $field = get_field_object($key, $post_id);
+
+        if($field){
+
+            $choices = $field['choices'];
+
+             if(isset($choices[$value])){
+
+                 return array(
+                              'value'=>$value,
+                              'label'=>$choices[$value]
+                 );
+             }
+
+        }
+
+    }
+
+return false;
+
+}
+
 
 
 
