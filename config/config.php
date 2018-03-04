@@ -82,7 +82,13 @@
 
             foreach($projects as $project){
                 if(isset($project->{$dist})){
-                    $dist_prj = $project->{$dist};
+                    if(!isset($project->{$dist}->path)){
+                        Console::log('Please check the config the new configuration is now projects project-alais->path','red');
+                        die();
+                    }else{
+                        $dist_prj = $project->{$dist}->path;
+                    }
+
                 }
             }
 
@@ -233,6 +239,43 @@
 
         public static function getPathFromOwp($file){
             return static::getOWPDir() . '/'. $file;
+        }
+
+
+
+        public static function getCurrentProject()
+        {
+            $projects = false;
+            $dist_prj = false;
+
+            if(isset(static::$project_config->projects)){
+                $projects =static::$project_config->projects;
+            }
+
+            $dist=static::$project_config->{'current_dist'};
+
+
+            foreach($projects as $project){
+                if(isset($project->{$dist})){
+                        $dist_prj = $project->{$dist};
+                }
+            }
+
+            return $dist_prj;
+        }
+
+        public static function hasDb()
+        {
+            $current_project = self::getCurrentProject();
+            if($current_project){
+                echo $current_project;
+                die();
+            }
+
+        }
+
+        public static function currentAlias(){
+            return static::$project_config->{'current_dist'};
         }
 
 

@@ -25,7 +25,7 @@
 
                 $templateName = $this->argv[3];
 
-                $pageName = slugify($templateName);
+                $pageName = _slugify($templateName);
 
                 if(isset($this->argv[4])){
                     $pageName = $this->argv[4];
