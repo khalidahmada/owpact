@@ -168,7 +168,7 @@ class exportDbHandler extends ChildHandler{
         $user   = DB_USER;
         $bdd    =  DB_NAME;
         $pwd    =  DB_PASSWORD;
-        return " mysqldump -u$user -p$pwd $bdd > __PATH__/__NAME__.sql";
+        return "sudo mysqldump -u$user -p$pwd $bdd > __PATH__/__NAME__.sql";
     }
 
     /**

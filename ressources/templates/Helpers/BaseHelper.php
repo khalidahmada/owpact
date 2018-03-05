@@ -2055,8 +2055,33 @@ function f_with_label($key, $post_id){
 
     }
 
-return false;
+    return false;
 
+}
+
+
+/**
+ * get label of given value
+ * @param $name
+ * @param $value
+ * @return bool
+ */
+function f_label_by_value($name, $value,$post_id){
+
+$field = get_field_object($name,$post_id);
+
+if($field){
+
+    $choices = $field['choices'];
+
+    if(isset($choices[$value])){
+
+        return $choices[$value];
+    }
+
+}
+
+return false;
 }
 
 

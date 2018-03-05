@@ -5,11 +5,11 @@
              },
              "bdd":{
                       "default":{
-                          "url":"maroc-etude.test",
-                          "export" :"%alias%-%date%",
+                          "url":"",
+                          "export" :"%alias%-%date%"
                       },
                       "prod":{
-                        "url":"dev-maroc-etude.endevmode.com",
+                        "url":"",
                         "export" :"%alias%-%date%",
                          "replaces":[{"xxx":"xxxxxx"},{"yyyyyy":"yyyyyyyyyyy"}]
                       }
