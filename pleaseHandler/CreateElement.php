@@ -148,16 +148,9 @@
             }
         }
 
-        public static function CreateDirectory($dir_name,$path=null)
+        public static function CreateDirectory($dir_name)
         {
-            $dir_name = false;
-            if($path){
-                $dir_name = $path . '/' .$dir_name;
-            }else{
-                $dir_name = \OWPactConfig::getOWPDir().'/'.$dir_name;
-            }
-
-
+            $dir_name = \OWPactConfig::getOWPDir().'/'.$dir_name;
             if(!is_dir($dir_name)){
                 mkdir($dir_name,0777,true);
             }
