@@ -109,5 +109,38 @@
             return $file_dist;
         }
 
+        protected function getFullNameWithoutFirstFolder($baseDir,$filename,$ext='php'){
+
+
+            if($baseDir && !empty($baseDir)){
+                $file_dist = "$baseDir/$filename.$ext";
+            }else{
+                $file_dist = "$filename.php";
+            }
+
+            return $file_dist;
+        }
+
+
+        /*
+         * Create Directory into given parth
+         */
+        protected function getFileAndDirNameAndPrepareDirectoryByGivenPath($arg,$path){
+
+            $baseDir = dirname($arg);
+            $nameFile = basename($arg);
+
+
+
+            if($baseDir && $baseDir!= '.' && $baseDir!= '/'){
+                CreteElement::CreateDirectory($baseDir,$path);
+            }else{
+                $baseDir = '';
+            }
+
+            return array($baseDir,$nameFile);
+
+        }
+
 
     }

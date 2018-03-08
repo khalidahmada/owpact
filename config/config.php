@@ -168,6 +168,12 @@
             return static::getDirectory() . static::$project_config->pages_dist;
         }
 
+
+        public static function getTemplatePartsDir()
+        {
+            return static::getDirectory() . 'template-parts';
+        }
+
         /*
          * Switch To Theme
          */

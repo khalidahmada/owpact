@@ -17,6 +17,7 @@ use pleaseHandler\EmailHandler;
     use pleaseHandler\ModuleHandler;
     use pleaseHandler\NotificationHandler;
     use pleaseHandler\PageHandler;
+    use pleaseHandler\partsHandler;
     use pleaseHandler\PublishHandler;
     use pleaseHandler\QueueHandler;
     use pleaseHandler\RepoHandler;
@@ -97,6 +98,7 @@ use pleaseHandler\EmailHandler;
             $this->RegisterModule('pleaseHandler/TplHandler');
             $this->RegisterModule('pleaseHandler/ControllerHandler');
             $this->RegisterModule('pleaseHandler/NotificationHandler');
+            $this->RegisterModule('pleaseHandler/templating/partsHandler');
 
         }
 
@@ -178,6 +180,7 @@ use pleaseHandler\EmailHandler;
             new TplHandler($argv);
             new ControllerHandler($argv);
             new NotificationHandler($argv);
+            new partsHandler($argv);
 
         }
 
@@ -234,6 +237,7 @@ use pleaseHandler\EmailHandler;
                 TplHandler::getDoc(),
                 ControllerHandler::getDoc(),
                 NotificationHandler::getDoc(),
+                partsHandler::getDoc(),
 
             );
 
