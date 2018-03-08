@@ -4,15 +4,20 @@
         /**
          * Return base params of Args for WP_Query
          * @param int $per_page
+         * @param array $args
          * @return array
          */
-        public static function args($per_page=-1){
+        public static function args($per_page=-1,$args = array()){
 
-            return array(
+            $defaults =  array(
                 'post_type' => static::$type,
                 'posts_per_page' => $per_page,
                 'post_status' => 'publish'
             );
+
+           $args =  wp_parse_args($args,$defaults);
+
+            return $args;
         }
 
         /**
