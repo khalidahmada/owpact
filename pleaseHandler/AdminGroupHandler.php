@@ -3,7 +3,6 @@
 
 
     use Console;
-    use pleaseHandler\AdminChildHandlers\testHandler;
 
     class AdminGroupHandler extends HandlerGroup{
 
@@ -52,7 +51,7 @@
         */
         protected function RequireLibs()
         {
-            $this->RegisterHandler(__DIR__.'/AdminChildHandlers/testHandler');
+
         }
 
         /*
