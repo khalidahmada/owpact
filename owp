@@ -27,9 +27,10 @@ use pleaseHandler\EmailHandler;
     use pleaseHandler\TplHandler;
     use pleaseHandler\TraitHandler;
     use pleaseHandler\UpdateBaseHelperHandler;
+use pleaseHandler\UpdateTraitRepoHandler;
 
 
-    class OWPactPlease
+class OWPactPlease
     {
 
         /**
@@ -91,6 +92,7 @@ use pleaseHandler\EmailHandler;
             $this->RegisterModule('pleaseHandler/QueueHandler');
             $this->RegisterModule('pleaseHandler/PageHandler');
             $this->RegisterModule('pleaseHandler/Extras/SwitchProjectHandler');
+            $this->RegisterModule('pleaseHandler/Extras/UpdateTraitRepoHandler');
             $this->RegisterModule('pleaseHandler/AdminGroupHandler');
             $this->RegisterModule('pleaseHandler/ACFGroupHandler');
             $this->RegisterModule('pleaseHandler/DBGroupHandlers');
@@ -176,6 +178,7 @@ use pleaseHandler\EmailHandler;
             new ACFGroupHandler($argv);
             new DBGroupHandlers($argv);
             new UpdateBaseHelperHandler($argv);
+            new UpdateTraitRepoHandler($argv);
             new FiltersHandler($argv);
             new TplHandler($argv);
             new ControllerHandler($argv);
@@ -221,6 +224,7 @@ use pleaseHandler\EmailHandler;
                 HookHandler::getDoc(),
                 FiltersHandler::getDoc(),
                 ExtraHandler::getDoc(),
+                UpdateTraitRepoHandler::getDoc(),
                 RouteHandler::getDoc(),
                 TraitHandler::getDoc(),
                 TableViewHandler::getDoc(),

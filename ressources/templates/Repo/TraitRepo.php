@@ -1,4 +1,10 @@
 <?php
+/*
+ * @note
+ * ********************        Important        ****************************************** /
+ * ************ Please don't add nothing here this will override on update TraitRepo ******
+ * ************ If you want add custom trait create your own Trait    *********************
+ *****************************************************************************************/
     trait TraitRepo{
 
         /**
