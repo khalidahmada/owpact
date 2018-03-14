@@ -62,6 +62,14 @@
         }
 
         /**
+         * Return the Ajax Route
+         * @return string
+         */
+        public static function route(){
+            return getAjaxRoute(self::action());
+        }
+
+        /**
          * Return the nonce name
          * @return mixed
          */
