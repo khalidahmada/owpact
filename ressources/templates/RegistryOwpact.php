@@ -1,7 +1,6 @@
 <?php
     /* Registery Owpact
     */
-
     // Config Object
     class WPTCONF {
         public static $conf=false;
