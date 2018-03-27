@@ -87,4 +87,15 @@
             return $this->errors_messages;
         }
 
+
+        /**
+         * Return the url of the current route with nonce
+         * @return string
+         */
+        public static function getRouteWithParamsAsUrl()
+        {
+            $baseLink = wp_nonce_url(self::route(),self::nonce());
+            return $baseLink;
+        }
+
     }

@@ -93,4 +93,63 @@
                 'compare'   => $compare
             );
         }
+
+        /**
+         * get All with extra args
+         * @param array $args
+         * @return mixed
+         */
+        public static function all($args = array())
+        {
+            $_args = self::args(-1,$args);
+
+            return self::Q($_args);
+        }
+
+        /**
+         * Find to send Extra params
+         * @param $args
+         * @return mixed
+         */
+        public static function find($args)
+        {
+            $_args = self::args(-1,$args);
+
+            return self::Q($_args);
+        }
+
+        /**
+         * First Element
+         * @param array $args
+         * @return bool
+         */
+        public static function first($args = array())
+        {
+
+            $_args = self::args(1,$args);
+
+            $results = self::Q($_args);
+
+            if($posts = $results->posts) return $posts[0];
+
+            return false;
+
+        }
+        /**
+         * last Element
+         * @param array $args
+         * @return bool
+         */
+        public static function last($args = array())
+        {
+
+            $_args = self::args(-1,$args);
+
+            $results = self::Q($_args);
+
+            if($posts = $results->posts) return end($posts);
+
+            return false;
+
+        }
     }
