@@ -89,12 +89,14 @@
 
 
         /**
-         * Return the url of the current route with nonce
+         * get Route of this current Action with nonce
+         * @param string $extra_params
          * @return string
          */
-        public static function getRouteWithParamsAsUrl()
+        public static function getRouteWithParamsAsUrl($extra_params='')
         {
-            $baseLink = wp_nonce_url(self::route(),self::nonce());
+            $action_url = self::route() . $extra_params;
+            $baseLink = wp_nonce_url($action_url,self::nonce());
             return $baseLink;
         }
 
