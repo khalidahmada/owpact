@@ -1,6 +1,5 @@
 <?php
     class BaseRepo {
-
         /**
          * WP_query
          * @param array $args

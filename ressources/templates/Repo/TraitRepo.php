@@ -39,7 +39,7 @@
 
             if($exclude) $args['post__not_in'] = $exclude;
 
-            if($use_paginate)$args['paged'] = get_query_var( 'paged' )  > 1  ? absint( get_query_var( 'paged' ) ) : 1;
+            if($use_paginate)self::use_paged($args);
 
             $query = static::Q($args);
 
@@ -150,6 +150,65 @@
             if($posts = $results->posts) return end($posts);
 
             return false;
+
+        }
+
+        /**
+         * Use Paged var
+         * @param $args
+         */
+        public static function use_paged(&$args)
+        {
+            $args['paged'] = get_query_var( 'paged' )  > 1  ? absint( get_query_var( 'paged' ) ) : 1;
+        }
+
+
+        /**
+         * Return posts where flag given is 1 as meta key
+         * @param $key_flag
+         * @param array $args
+         * @return mixed
+         */
+        public static function which_is($key_flag, $args=array())
+        {
+
+            $meta_query = array();
+
+            $_args = self::args(-1,$args);
+
+            if(isset($_args['meta_query'])) $meta_query = $_args['meta_query'];
+
+            $meta_query[] = self::is($key_flag);
+
+            $_args['meta_query'] = $meta_query;
+
+            return self::Q($_args);
+
+        }
+
+        /**
+         * Return posts with send meta_query and tax_query
+         * @param $meta_query
+         * @param array $tax_query
+         * @param int $per_page
+         * @return mixed
+         */
+        public static function where($meta_query, $tax_query=array(), $per_page=-1)
+        {
+
+            $args = array();
+
+            if($meta_query){
+                $args['meta_query'] = $meta_query;
+            }
+
+            if($tax_query){
+                $args['tax_query'] = $tax_query;
+            }
+
+            $_args = self::args($per_page,$args);
+
+            return self::Q($_args);
 
         }
     }
