@@ -14,16 +14,18 @@
             if(!$this->match) return;
 
             if(isset($this->argv[3])){
-                $this->Execute($this->argv[3]);
+                $parse =  $this->getFileAndDirNameAndPrepareDirectory($this->argv[3],'Extra');
+                $this->Execute($parse[1],$parse[0]);
             }else{
                 $this->error("Please Enter name of your extra class");
                 die();
             }
         }
 
-        private function Execute($className)
+        private function Execute($file_name,$baseDir)
         {
-            $create = new CreteElement("Extra/$className.php",array("_NAME_" => $className),'Extra',__DIR__.'/../ressources/src/Extra.php','RegisterExtra');
+            $file_dist = $this->getFullName($baseDir,$file_name,'Extra');
+            $create = new CreteElement($file_dist,array("_NAME_" => $file_name),'Extra',__DIR__.'/../ressources/src/Extra.php','RegisterExtra');
             $create->CreateItem();
             die();
 

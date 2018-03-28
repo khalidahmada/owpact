@@ -162,6 +162,12 @@
             $args['paged'] = get_query_var( 'paged' )  > 1  ? absint( get_query_var( 'paged' ) ) : 1;
         }
 
+        public static function orderByMeta(&$args,$meta_key,$order='DESC')
+        {
+            $args['meta_key'] =$meta_key;
+            $args['orderby' ] = 'meta_value';
+            $args['order' ] =$order;
+        }
 
         /**
          * Return posts where flag given is 1 as meta key
