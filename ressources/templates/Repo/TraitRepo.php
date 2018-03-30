@@ -2,7 +2,7 @@
 /*
  * @note
  * ********************        Important        ****************************************** /
- * ************ Please don't add nothing here this will override on update TraitRepo ******
+ * ************ Please don't add nothing here this will override on each update TraitRepo ******
  * ************ If you want add custom trait create your own Trait    *********************
  *****************************************************************************************/
     trait TraitRepo{
