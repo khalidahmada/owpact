@@ -217,4 +217,21 @@
             return self::Q($_args);
 
         }
+
+
+        /**
+         *
+         * Return array of an ACF relation field meta query request
+         * @param $key
+         * @param $value
+         * @return array
+         */
+        public static function acf_relation_like($key, $value)
+        {
+            return array(
+                'key'=>$key,
+                'value'=>'"'.$value.'"',
+                'compare'=>'LIKE'
+            );
+        }
     }
