@@ -199,7 +199,7 @@
     /*
     * Get page by templte
     **/
-    function getPageByTemplate($tpl)
+    function getPageByTemplate($tpl,$extra=array(),$return_else="#")
     {
         $args=array(
             'suppress_filters'=>false,
@@ -212,12 +212,18 @@
                 )
             )
         );
-        $pages=get_posts($args);
-        foreach ($pages as $page) {
-            return get_permalink($page->ID);
+
+        $args = wp_parse_args($extra,$args);
+
+        $pages=new WP_Query($args);
+
+        if($pages->posts){
+            foreach ($pages->posts as $page) {
+                return get_permalink($page->ID);
+            }
         }
 
-        return '#';
+        return $return_else;
     }
 
     function getPageByTemplatedatas($tpl)
