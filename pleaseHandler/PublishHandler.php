@@ -20,13 +20,29 @@
 
         }
 
+        private function copy_dir($src, $dst)
+        {
+            $dir = opendir($src);
+            @mkdir($dst);
+            while (false !== ($file = readdir($dir))) {
+                if (($file != '.') && ($file != '..')) {
+                    if (is_dir($src . '/' . $file)) {
+                        $this->copy_dir($src . '/' . $file, $dst . '/' . $file);
+                    } else {
+                        copy($src . '/' . $file, $dst . '/' . $file);
+                    }
+                }
+            }
+            closedir($dir);
+        }
+
 
         public function Publish()
         {
             if(!$this->checkDir()){
                 $this->PublishFolder();
             }else{
-                Console::log("Publish is already Done go to ".OWPactConfig::getOWPDir(),'red');
+                Console::log("Publish is already done go to ".OWPactConfig::getOWPDir(),'red');
             }
         }
         public static function  checkDir()
@@ -45,7 +61,7 @@
 
             CreteElement::CreateDirectoryIntoGlobalPath($inc_folder);
 
-            copy_dir(__DIR__."/../ressources/templates" , OWPactConfig::getOWPDir());
+            $this->copy_dir(__DIR__."/../ressources/templates" , OWPactConfig::getOWPDir());
 
             // Append file to function file
             $function_file = OWPactConfig::getFunctionFilePath();
