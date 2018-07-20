@@ -1640,22 +1640,22 @@
         return $groupby;
     }
 
-    function tesms_to_string($id, $taxonomie)
-    {
-        $str="";
-        $terms=get_the_terms($id, $taxonomie);
-        if ($terms && is_array($terms)) {
-            foreach ($terms as $ter) {
-                $str.=$ter->name . ' ';
-            }
-        }
 
-        if ($str == '') {
-            return false;
-        }
-
-        return $str;
+function tesms_to_string($id, $taxonomie,$split=" ")
+{
+    $str="";
+    $terms=get_the_terms($id, $taxonomie);
+    if ($terms && is_array($terms)) {
+        $names = wp_list_pluck($terms,'name');
+        $str = join($split,$names);
     }
+
+    if ($str == '') {
+        return false;
+    }
+
+    return $str;
+}
 
     function getUrlWithoutFilter($type, $valeur)
     {

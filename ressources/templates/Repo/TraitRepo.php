@@ -135,6 +135,28 @@
             return false;
 
         }
+
+
+        /**
+         * Latest Element
+         * @param int $per_page
+         * @param array $args
+         * @return bool
+         */
+        public static function latest($per_page = 10,$args = array())
+        {
+            if(!isset($args['orderby'])) $args['orderby'] = 'date';
+            if(!isset($args['order'])) $args['order'] = 'DESC';
+
+            $_args = self::args($per_page,$args);
+
+            $results = self::Q($_args);
+
+            if($posts = $results->posts) return $posts[0];
+
+            return false;
+
+        }
         /**
          * last Element
          * @param array $args

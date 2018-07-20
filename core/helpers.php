@@ -1,5 +1,5 @@
 <?php
-
+/*
 function copy_dir($src, $dst)
 {
     $dir = opendir($src);
@@ -15,6 +15,7 @@ function copy_dir($src, $dst)
     }
     closedir($dir);
 }
+*/
 if(!function_exists('_slugify')){
     function _slugify($text)
     {
